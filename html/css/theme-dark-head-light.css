@@ -1818,6 +1818,13 @@ ul.panel-controls > li > .dropdown-menu:before {
   margin-left: -16px;
   margin-top: -16px;
 }
+.panel-refresh-layer h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+}
 /* EOF PANEL REFRESHING */
 .panel-toggled .panel-body,
 .panel-toggled .panel-footer {

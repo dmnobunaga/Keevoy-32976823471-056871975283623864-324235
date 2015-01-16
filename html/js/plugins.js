@@ -463,8 +463,8 @@ $(function() {
             
             if($(".plugin-date").length > 0){
                 
-                var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+                var months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
                         
                 var now     = new Date();
                 var day     = days[now.getDay()];

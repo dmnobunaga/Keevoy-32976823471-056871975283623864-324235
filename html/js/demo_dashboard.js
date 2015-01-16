@@ -1,14 +1,16 @@
-$(function(){        
+$(function(){
+    /* Moment */
+    moment.locale('ru');
     /* reportrange */
     if($("#reportrange").length > 0){   
         $("#reportrange").daterangepicker({                    
             ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+               'Сегодня': [moment(), moment()],
+               'Вчера': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'За 7 дней': [moment().subtract(6, 'days'), moment()],
+               'За 30 дней': [moment().subtract(29, 'days'), moment()],
+               'Этот месяц': [moment().startOf('month'), moment().endOf('month')],
+               'Предыдущий Месяц': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             },
             opens: 'left',
             buttonClasses: ['btn btn-default'],
@@ -39,8 +41,8 @@ $(function(){
             renderer: 'area',
             width: $("#dashboard-chart").width(),
             height: 250,
-            series: [{color: "#33414E",data: seriesData[0],name: 'New'}, 
-                     {color: "#3FBAE4",data: seriesData[1],name: 'Returned'}]
+            series: [{color: "#33414E",data: seriesData[0],name: 'Новых'},
+                     {color: "#3FBAE4",data: seriesData[1],name: 'Вернулось'}]
     } );
 
     rdc.render();
@@ -69,9 +71,9 @@ $(function(){
     Morris.Donut({
         element: 'dashboard-donut-1',
         data: [
-            {label: "Returned", value: 2513},
-            {label: "New", value: 764},
-            {label: "Registred", value: 311}
+            {label: "Новые", value: 2513},
+            {label: "Вернувшиеся", value: 764},
+            {label: "Клиенты", value: 311}
         ],
         colors: ['#33414E', '#3FBAE4', '#FEA223'],
         resize: true
@@ -92,7 +94,7 @@ $(function(){
         ],
         xkey: 'y',
         ykeys: ['a', 'b'],
-        labels: ['New Users', 'Returned'],
+        labels: ['Покупатели', 'Посетители'],
         barColors: ['#33414E', '#3FBAE4'],
         gridTextSize: '10px',
         hideHover: true,
@@ -105,19 +107,19 @@ $(function(){
     Morris.Line({
       element: 'dashboard-line-1',
       data: [
-        { y: '2014-10-10', a: 2,b: 4},
-        { y: '2014-10-11', a: 4,b: 6},
-        { y: '2014-10-12', a: 7,b: 10},
-        { y: '2014-10-13', a: 5,b: 7},
-        { y: '2014-10-14', a: 6,b: 9},
-        { y: '2014-10-15', a: 9,b: 12},
-        { y: '2014-10-16', a: 18,b: 20}
+        { y: '2015-06-01', a: 1,b: 40},
+        { y: '2015-07-01', a: 1,b: 60},
+        { y: '2015-08-01', a: 1,b: 70},
+        { y: '2015-09-01', a: 2,b: 240},
+        { y: '2015-10-01', a: 2,b: 250},
+        { y: '2015-11-01', a: 4,b: 460},
+        { y: '2015-12-01', a: 6,b: 720},
+        { y: '2016-01-01', a: 3,b: 920}
       ],
       xkey: 'y',
       ykeys: ['a','b'],
-      labels: ['Sales','Event'],
+      labels: ['Кампании','Продажи'],
       resize: true,
-      hideHover: true,
       xLabels: 'day',
       gridTextSize: '10px',
       lineColors: ['#3FBAE4','#33414E'],
@@ -126,24 +128,20 @@ $(function(){
     /* EMD Line dashboard chart */
     
     /* Vector Map */
-    var jvm_wm = new jvm.WorldMap({container: $('#dashboard-map-seles'),
-                                    map: 'world_mill_en', 
-                                    backgroundColor: '#FFFFFF',                                      
-                                    regionsSelectable: true,
-                                    regionStyle: {selected: {fill: '#B64645'},
-                                                    initial: {fill: '#33414E'}},
-                                    markerStyle: {initial: {fill: '#3FBAE4',
-                                                   stroke: '#3FBAE4'}},
-                                    markers: [{latLng: [50.27, 30.31], name: 'Kyiv - 1'},                                              
-                                              {latLng: [52.52, 13.40], name: 'Berlin - 2'},
-                                              {latLng: [48.85, 2.35], name: 'Paris - 1'},                                            
-                                              {latLng: [51.51, -0.13], name: 'London - 3'},                                                                                                      
-                                              {latLng: [40.71, -74.00], name: 'New York - 5'},
-                                              {latLng: [35.38, 139.69], name: 'Tokyo - 12'},
-                                              {latLng: [37.78, -122.41], name: 'San Francisco - 8'},
-                                              {latLng: [28.61, 77.20], name: 'New Delhi - 4'},
-                                              {latLng: [39.91, 116.39], name: 'Beijing - 3'}]
-                                });    
+
+    jQuery('#dashboard-map-sales').vectorMap(
+        {
+            map: 'russia_en',
+            backgroundColor: '#fff',
+            color: '#eee',
+            hoverOpacity: 0.7,
+            selectedColor: '#999999',
+            enableZoom: true,
+            showTooltip: true,
+            scaleColors: ['#C8EEFF', '#006491'],
+            values: {'mc':'75','le':'20','cl':'3','or':'1','pe':'1','kr':'0.1','sh':'0.1','sa':'0.7'},
+            normalizeFunction: 'polynomial'
+        });
     /* END Vector Map */
 
     

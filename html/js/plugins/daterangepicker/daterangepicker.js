@@ -153,12 +153,12 @@
             this.separator = ' - ';
 
             this.locale = {
-                applyLabel: 'Apply',
-                cancelLabel: 'Cancel',
-                fromLabel: 'From',
-                toLabel: 'To',
-                weekLabel: 'W',
-                customRangeLabel: 'Custom Range',
+                applyLabel: 'Применить',
+                cancelLabel: 'Отменить',
+                fromLabel: 'С',
+                toLabel: 'По',
+                weekLabel: 'н',
+                customRangeLabel: 'Диапазон',
                 daysOfWeek: moment.weekdaysMin(),
                 monthNames: moment.monthsShort(),
                 firstDay: moment.localeData()._week.dow
