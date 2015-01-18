@@ -47,7 +47,7 @@ body {
   background: #f5f5f5 url('../img/bg.png') left top repeat;
   position: relative;
   font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   color: #656d78;
   overflow-x: hidden;
 }
@@ -241,7 +241,7 @@ body {
   padding-right: 50px;
 }
 body.page-container-boxed {
-  background: url("../img/backgrounds/wall_1.jpg") left top no-repeat fixed;
+  background: url("../img/backgrounds/wall_1.jpg") top repeat fixed;
   padding: 20px 0px;
 }
 body.page-container-boxed .page-container {
@@ -1818,6 +1818,23 @@ ul.panel-controls > li > .dropdown-menu:before {
   margin-left: -16px;
   margin-top: -16px;
 }
+.widget-refresh-layer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: #FFF;
+  opacity: 0.5;
+  filter: alpha(opacity = 50);
+  z-index: 3;
+  font-size: 21px;
+}
+.widget-refresh-layer img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+}
 /* EOF PANEL REFRESHING */
 .panel-toggled .panel-body,
 .panel-toggled .panel-footer {
@@ -1941,7 +1958,7 @@ ul.panel-controls > li > .dropdown-menu:before {
 /* END USER */
 /* BUTTONS */
 .btn {
-  font-size: 12px;
+  font-size: 16px;
   padding: 4px 15px;
   line-height: 20px;
   font-weight: 400;
@@ -2368,7 +2385,7 @@ label.valid {
   font-weight: 500;
 }
 .badge {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 20px;
   font-weight: 500;
   -moz-border-radius: 3px;
@@ -7357,8 +7374,13 @@ li.ext_zip {
     background-size: 220px 50px;
   }
 }
-.blur {
-  text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);
+.in_dev {
+  /*background: #000000;*/
+  /*text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);*/
   /*transform: scale(0.9);*/
   opacity: 0.6;
+}
+.copyright{
+  padding: 20px;
+  color:#fff;
 }

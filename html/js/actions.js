@@ -15,12 +15,23 @@ $(document).ready(function(){
         e.stopPropagation();
     });    
     
-    /* WIDGETS (DEMO)*/
+    /* WIDGETS */
     $(".widget-remove").on("click",function(){
         $(this).parents(".widget").fadeOut(400,function(){
             $(this).remove();
             $("body > .tooltip").remove();
         });
+        return false;
+    });
+    $(".widget-refresh").on("click",function(){
+        var widget = $(this).parents(".widget");
+        widget_refresh(widget);
+
+        setTimeout(function(){
+            widget_refresh(widget);
+        },3000);
+
+        $(this).parents(".dropdown").removeClass("open");
         return false;
     });
     /* END WIDGETS */
@@ -403,7 +414,24 @@ function panel_refresh(panel,action,callback){
     }       
     onload();
 }
-function panel_remove(panel,action,callback){    
+function widget_refresh(widget,action,callback){
+    if(!widget.hasClass("widget-refreshing")){
+        widget.append('<div class="widget-refresh-layer"><img src="img/loaders/default.gif"/></div>');
+        widget.find(".widget-refresh-layer").width(widget.width()).height(widget.height() + 25);
+        widget.addClass("widget-refreshing");
+
+        if(action && action === "shown" && typeof callback === "function")
+            callback();
+    }else{
+        widget.find(".widget-refresh-layer").remove();
+        widget.removeClass("widget-refreshing");
+
+        if(action && action === "hidden" && typeof callback === "function")
+            callback();
+    }
+    onload();
+}
+function panel_remove(panel,action,callback){
     if(action && action === "before" && typeof callback === "function") 
         callback();
     
