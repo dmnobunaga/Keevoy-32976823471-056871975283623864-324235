@@ -242,7 +242,7 @@ body {
 }
 body.page-container-boxed {
   background: url("../img/backgrounds/wall_1.jpg") top repeat fixed;
-  padding: 20px 0px;
+  /*padding: 20px 0px;*/
 }
 body.page-container-boxed .page-container {
   width: 1200px;
@@ -7359,7 +7359,7 @@ li.ext_zip {
     background-size: 200px 20px;
   }
   .ui-resizable-se {
-    background-image: url("../img/jqyery/resize-icon@2x.png");
+    background-image: url("../img/jquery/resize-icon@2x.png");
   }
   .x-navigation > li.xn-logo > a:first-child {
     background-image: url("../img/logo@2x.png");
