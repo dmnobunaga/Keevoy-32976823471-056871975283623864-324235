@@ -28,9 +28,8 @@ body {
   padding: 0px;
   margin: 0px;
   position: relative;
-  font-family: 'Forum', sans-serif;
-  font-size: 12px;
-  color: #757575;
+  font-size: 14px;
+  color: #252525;
   overflow-x: hidden;
   background: #ffffff;
 }
@@ -199,8 +198,8 @@ a:hover {
   float: left;
   line-height: 80px;
   color: #757575;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
   padding: 0px 15px;
   height: 80px;
   border-bottom: 2px solid transparent;
@@ -1748,4 +1747,172 @@ blockquote p {
   .page-container .page-footer .page-footer-wrap .page-footer-holder {
     width: 100%;
   }
+}
+.jumpstart {
+    padding: 20%;
+    background: url("http://pershastudia.com/media/15.jpg");
+}
+
+.search__field {
+    width: 360px;
+    height: 54px;
+    font-style: italic;
+    border: 1px solid #34495e;
+    box-shadow: none;
+    -webkit-transition: all 300ms ease-in;
+    transition: all 300ms ease-in;
+    min-width: 380px;
+    padding: 13px 15px 16px 30px;
+    font-size: 14px;
+    color: #34495e;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.search__field:hover,
+.search__field:focus {
+    color: #252525;
+    border: 1px solid #34495e;
+}
+.search__field:hover + .search__btn,
+.search__field:focus + .search__btn {
+    color: #252525;
+}
+.btn--decorated {
+    font-size: 18px;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    -webkit-transition: all 300ms ease-in;
+    transition: all 300ms ease-in;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    padding: 17px 19px 15px;
+    box-shadow: none;
+    -webkit-border-radius: 0 25px 25px 0;
+    -moz-border-radius: 0 25px 25px 0;
+    border-radius: 0 25px 25px 0;
+}
+.btn--decorated:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+    -webkit-border-radius: 0 0 25px 0;
+    -moz-border-radius: 0 0 25px 0;
+    border-radius: 0 0 25px 0;
+}
+.btn--decorated.btn-info:hover {
+    background-color: #7bc6cd;
+}
+.btn--decorated.btn-warning:hover {
+    background-color: #eac375;
+}
+.btn--decorated.btn-primary:hover {
+    background-color: #3d536a;
+}
+.btn--decorated.btn-primary {
+    background-color: #2c3d50;
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn--decorated.btn-danger:hover {
+    background-color: #f48987;
+}
+.search--empty {
+    display: inline-block;
+    padding-top: 35px;
+    margin: 0;
+    margin-left: 20px;
+}
+.search--empty .search__btn {
+    top: 43px;
+    right: auto;
+    left: 0;
+    color: #758594;
+}
+.search--empty .search__field {
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 13px;
+    padding-left: 45px;
+    font-size: 14px;
+    color: #758594;
+    background: none;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.search--empty .search__field:hover {
+    color: #758594;
+    border: none;
+}
+.search--empty .search__field:hover + .search__btn {
+    color: #758594;
+}
+.search--empty .search__field:focus {
+    color: #34495e;
+    border: none;
+}
+.search--empty .search__field:focus + .search__btn {
+    color: #34495e;
+}
+.search--light {
+    margin-top: 13px;
+    margin-right: 20px;
+}
+.search--light .search__field {
+    width: 245px;
+    background-color: #ffffff;
+    border-color: #dfe6e7;
+}
+.search--light .search__field:hover,
+.search--light .search__field:focus {
+    color: #34495e;
+    border-color: #34495e;
+}
+.search--light .search__field:hover + .search__btn,
+.search--light .search__field:focus + .search__btn {
+    color: #34495e;
+}
+.search--large {
+    display: inline-block;
+    margin-right: 0;
+    margin-top: 0;
+}
+.search--large .search__field {
+    min-width: 380px;
+    height: 50px;
+    padding: 13px 15px 16px 30px;
+    font-size: 14px;
+    color: #34495e;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+.search--large .search__btn {
+    top: 12px;
+    right: 10px;
+    color: #34495e;
+}
+.search--long {
+    display: inline-block;
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.search--long .search__field {
+    width: 360px;
+    color: #34495e;
+}
+.search--long .search__btn {
+    color: #34495e;
+}
+.search--centered {
+    display: inline-block;
+    margin-left: 120px;
 }
