@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic,cyrillic-ext,latin,latin-ext);
 @import "bootstrap/bootstrap.min.css";
 @import "fontawesome/font-awesome.min.css";
+@import "icomoon/style.css";
 @import "animate/animate.min.css";
 
 
@@ -1752,4 +1753,7 @@ blockquote p {
 
 #cabinet{
   padding-left: 50px;
+}
+#advantages{
+  color:#fff;
 }
