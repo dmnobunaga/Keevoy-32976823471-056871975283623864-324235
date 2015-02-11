@@ -1240,6 +1240,9 @@ a:hover {
 .page-container .bg-img-2 {
   background: url("../img/backgrounds/bg-2.jpg") top center fixed;
 }
+.page-container .bg-img-start {
+  background: url("../img/backgrounds/bg-start.png") top center scroll;
+}
 .page-container .bg-texture-1 {
   background-image: url("../img/textures/texture-1.png");
   background-position: left top;
@@ -1750,10 +1753,27 @@ blockquote p {
     width: 100%;
   }
 }
+.promo {
+    color: #ffffff;
+}
+.promo.start {
 
+    font-size: 64px;
+    color: #ffffff;
+}
+.promo-box {
+    font-family:"Open Sans", sans-serif;
+    font-size:14px;
+    color: #ffffff;
+    line-height: 24px;
+}
 #cabinet{
   padding-left: 50px;
 }
 #advantages{
   color:#fff;
+}
+input.lets-start{
+    height: 55px;
+    font-size: 25px;
 }
