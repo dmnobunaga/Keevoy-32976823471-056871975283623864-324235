@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="Новый документ 1">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:label="Invert"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Invert colors"
+       color-interpolation-filters="sRGB"
+       id="filter3207">
+      <feColorMatrix
+         type="saturate"
+         values="1"
+         result="fbSourceGraphic"
+         id="feColorMatrix3209" />
+      <feColorMatrix
+         in="fbSourceGraphic"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 "
+         id="feColorMatrix3211" />
+    </filter>
+    <filter
+       inkscape:label="Invert"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Invert colors"
+       color-interpolation-filters="sRGB"
+       id="filter3213">
+      <feColorMatrix
+         type="saturate"
+         values="1"
+         result="fbSourceGraphic"
+         id="feColorMatrix3215" />
+      <feColorMatrix
+         in="fbSourceGraphic"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 "
+         id="feColorMatrix3217" />
+    </filter>
+    <filter
+       inkscape:label="Invert"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Invert colors"
+       color-interpolation-filters="sRGB"
+       id="filter3219">
+      <feColorMatrix
+         type="saturate"
+         values="1"
+         result="fbSourceGraphic"
+         id="feColorMatrix3221" />
+      <feColorMatrix
+         in="fbSourceGraphic"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 "
+         id="feColorMatrix3223" />
+    </filter>
+    <filter
+       inkscape:label="Invert"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Invert colors"
+       color-interpolation-filters="sRGB"
+       id="filter3225">
+      <feColorMatrix
+         type="saturate"
+         values="1"
+         result="fbSourceGraphic"
+         id="feColorMatrix3227" />
+      <feColorMatrix
+         in="fbSourceGraphic"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 "
+         id="feColorMatrix3229" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="401.4677"
+     inkscape:cy="653.86798"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3024"
+       transform="matrix(1.0416667,0,0,1.0416667,321.86383,71.109826)"
+       inkscape:export-filename="C:\Users\Dmitry\Downloads\Ключевой\front-end\assets\smm\vk.png"
+       inkscape:export-xdpi="75.599998"
+       inkscape:export-ydpi="75.599998"
+       style="filter:url(#filter3219)">
+      <path
+         id="path2986"
+         d="m 53.174,52.908 c -1.539,-0.896 -3.678,-0.896 -5.416,-0.896 h -5.707 v 11.76 h 5.238 c 1.939,0 4.412,0.139 6.084,-1.035 1.535,-1.033 2.404,-3.061 2.404,-4.992 0,-1.794 -1.068,-3.94 -2.603,-4.837 z M 51.021,42.865 c 1.27,-0.967 1.936,-2.691 1.936,-4.279 0,-1.725 -0.801,-3.381 -2.27,-4.277 -1.537,-0.896 -4.346,-0.689 -6.15,-0.689 h -2.486 v 10.35 h 3.289 c 1.871,-10e-4 4.078,0.137 5.681,-1.105 z M 79.125,0 H 16.873 C 7.555,0 0,7.555 0,16.875 v 62.25 C 0,88.443 7.555,96 16.873,96 H 79.125 C 88.443,96 96,88.443 96,79.125 V 16.875 C 96,7.555 88.443,0 79.125,0 z M 50.604,72.535 H 30.992 V 25.201 H 52.42 c 6.207,0 11.934,3.951 11.934,10.92 0,5.381 -3.004,9.066 -6.836,10.211 v 0.139 c 5.682,1.174 9.74,4.26 9.74,11.705 0,6.89 -4.692,14.359 -16.654,14.359 z"
+         inkscape:connector-curvature="0" />
+      <g
+         id="g2988">
+</g>
+      <g
+         id="g2990">
+</g>
+      <g
+         id="g2992">
+</g>
+      <g
+         id="g2994">
+</g>
+      <g
+         id="g2996">
+</g>
+      <g
+         id="g2998">
+</g>
+      <g
+         id="g3000">
+</g>
+      <g
+         id="g3002">
+</g>
+      <g
+         id="g3004">
+</g>
+      <g
+         id="g3006">
+</g>
+      <g
+         id="g3008">
+</g>
+      <g
+         id="g3010">
+</g>
+      <g
+         id="g3012">
+</g>
+      <g
+         id="g3014">
+</g>
+      <g
+         id="g3016">
+</g>
+    </g>
+    <path
+       id="path3043"
+       d="M 115.46126,302.48391 H 48.795241 c -9.16719,0 -16.66836,7.50137 -16.66836,16.66875 v 66.6627 c 0,9.17363 7.50117,16.66855 16.66836,16.66855 l 66.666019,-1.9e-4 c 9.16757,0 16.66562,-7.49473 16.66562,-16.66875 v -66.66231 c 0,-9.16738 -7.49824,-16.66875 -16.66562,-16.66875 z m 1.68438,50 h -16.26876 v 43.75 H 82.126878 v -43.75 h -9.03575 v -14.31289 h 9.03575 v -9.29551 c 0,-12.63106 5.44844,-20.1416 20.299812,-20.1416 h 17.11367 v 15.48535 h -13.97735 c -4.14863,-0.007 -4.66328,2.16328 -4.66328,6.20235 l -0.0228,7.74941 h 18.75 l -2.48125,14.31289 z"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Dmitry\Downloads\Ключевой\front-end\assets\smm\fb.png"
+       inkscape:export-xdpi="75.599998"
+       inkscape:export-ydpi="75.599998"
+       style="filter:url(#filter3207)" />
+    <g
+       id="g3071"
+       transform="matrix(3.8461538,0,0,3.8461538,619.70275,306.29842)"
+       inkscape:export-filename="C:\Users\Dmitry\Downloads\Ключевой\front-end\assets\smm\in.png"
+       inkscape:export-xdpi="75.599998"
+       inkscape:export-ydpi="75.599998"
+       style="filter:url(#filter3213)">
+      <rect
+         id="rect3053"
+         height="26"
+         width="26"
+         x="0"
+         y="0"
+         style="fill:none" />
+      <path
+         id="path3055"
+         d="M 20,7 C 19.449,7 19,6.551 19,6 V 4 c 0,-0.551 0.449,-1 1,-1 h 2 c 0.551,0 1,0.449 1,1 v 2 c 0,0.551 -0.449,1 -1,1 h -2 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000" />
+      <path
+         id="path3057"
+         d="m 13,9.188 c -0.726,0 -1.396,0.213 -1.973,0.563 0.18,-0.056 0.367,-0.093 0.564,-0.093 1.068,0 1.933,0.865 1.933,1.934 0,1.066 -0.865,1.933 -1.933,1.933 -1.068,0 -1.933,-0.866 -1.933,-1.933 0,-0.199 0.039,-0.386 0.094,-0.565 C 9.4,11.604 9.188,12.274 9.188,13 c 0,2.107 1.705,3.813 3.813,3.813 2.105,0 3.813,-1.705 3.813,-3.813 0,-2.108 -1.709,-3.812 -3.814,-3.812 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000" />
+      <g
+         id="g3059">
+	<path
+   id="path3061"
+   d="m 13,7 c 3.313,0 6,2.686 6,6 0,3.314 -2.688,6 -6,6 C 9.687,19 7,16.314 7,13 7,9.686 9.687,7 13,7 m 0,-2 c -4.411,0 -8,3.589 -8,8 0,4.411 3.589,8 8,8 4.411,0 8,-3.589 8,-8 0,-4.411 -3.589,-8 -8,-8 l 0,0 z"
+   inkscape:connector-curvature="0"
+   style="fill:#000000" />
+
+</g>
+      <path
+         id="path3063"
+         d="M 21.125,0 H 4.875 C 2.182,0 0,2.182 0,4.875 v 16.25 C 0,23.818 2.182,26 4.875,26 h 16.25 C 23.818,26 26,23.818 26,21.125 V 4.875 C 26,2.182 23.818,0 21.125,0 z M 24,9 H 17.463 C 18.416,10.063 19,11.461 19,13 19,16.314 16.312,19 13,19 9.687,19 7,16.314 7,13 7,11.461 7.584,10.062 8.537,9 H 2 V 4.875 C 2,3.29 3.29,2 4.875,2 h 16.25 C 22.711,2 24,3.29 24,4.875 V 9 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000" />
+    </g>
+    <path
+       id="path3080"
+       d="m 406.4799,527.28544 h -62.5 c -10.35625,0 -18.75,8.39375 -18.75,18.75 v 62.5 c 0,10.35625 8.39375,18.75 18.75,18.75 h 62.5 c 10.35625,0 18.75,-8.39375 18.75,-18.75 v -62.5 c 0,-10.35625 -8.39375,-18.75 -18.75,-18.75 z m -6.375,38.775 0.0375,1.59375 c 0,16.275 -12.38125,35.025 -35.025,35.025 -6.95,0 -13.41875,-2.0375 -18.86875,-5.53125 0.9625,0.1125 1.94375,0.175 2.9375,0.175 5.76875,0 11.075,-1.96875 15.2875,-5.26875 -5.3875,-0.1 -9.93125,-3.6625 -11.5,-8.55 0.75625,0.14375 1.51875,0.2125 2.31875,0.2125 1.125,0 2.2125,-0.14375 3.24375,-0.425 -5.63125,-1.1375 -9.875,-6.10625 -9.875,-12.06875 v -0.15625 c 1.6625,0.925 3.55625,1.475 5.575,1.54375 -3.3,-2.20625 -5.475,-5.975 -5.475,-10.24375 0,-2.25625 0.60625,-4.36875 1.6625,-6.1875 6.06875,7.45 15.14375,12.35 25.375,12.8625 -0.2125,-0.9 -0.31875,-1.84375 -0.31875,-2.80625 0,-6.79375 5.5125,-12.30625 12.3125,-12.30625 3.5375,0 6.7375,1.49375 8.9875,3.8875 2.8,-0.55625 5.4375,-1.58125 7.81875,-2.9875 -0.91875,2.875 -2.86875,5.2875 -5.4125,6.8125 2.48125,-0.29375 4.8625,-0.9625 7.06875,-1.9375 -1.65,2.4625 -3.74375,4.63125 -6.15,6.35625 z"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Dmitry\Downloads\Ключевой\front-end\assets\smm\tw.png"
+       inkscape:export-xdpi="75.599998"
+       inkscape:export-ydpi="75.599998"
+       style="filter:url(#filter3225)" />
+    <rect
+       style="fill:#333333"
+       id="rect3089"
+       width="426.28433"
+       height="228.97188"
+       x="164.65488"
+       y="241.73029"
+       ry="23.53323" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+       x="284.86301"
+       y="334.14371"
+       id="text3091"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3093"
+         x="284.86301"
+         y="334.14371" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+       x="255.56859"
+       y="303.83914"
+       id="text3095"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3097"
+         x="255.56859"
+         y="303.83914" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16.86381531px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+       x="192.85683"
+       y="271.17737"
+       id="text3099"
+       sodipodi:linespacing="125%"
+       transform="scale(1.0160312,0.98422174)"><tspan
+         sodipodi:role="line"
+         id="tspan3101"
+         x="192.85683"
+         y="271.17737">Социальное размещение</tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="292.25714"
+         id="tspan3103" /><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="313.33691"
+         id="tspan3105">Размещение информации о веб сайте</tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="334.41669"
+         id="tspan3109">товарах и услугах и ссылок, в сообществах, </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="355.49646"
+         id="tspan3119">группах записях, интеграция в новостную ленту </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="376.5762"
+         id="tspan3127">пользователей участников различных </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="397.65598"
+         id="tspan3129">партнёрских программ наших партнёров с </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="418.73575"
+         id="tspan3131">помощью нашей специальной </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="439.81552"
+         id="tspan3133">технологиитехнология</tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="460.89529"
+         id="tspan3121">Insider SMM. </tspan><tspan
+         sodipodi:role="line"
+         x="192.85683"
+         y="481.97507"
+         id="tspan3115" /></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3135"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3137"><rect
+           id="rect3139"
+           width="75.761444"
+           height="73.741135"
+           x="236.3757"
+           y="371.51938" /></flowRegion><flowPara
+         id="flowPara3141"></flowPara></flowRoot>  </g>
+</svg>

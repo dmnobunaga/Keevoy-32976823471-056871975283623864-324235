@@ -1,0 +1,27 @@
+{
+  "name": "Principal",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.1",
+    "gulp-autoprefixer": "*",
+    "gulp-css-base64": "*",
+    "gulp-connect": "*",
+    "gulp-concat": "*",
+    "gulp-order": "*",
+    "gulp-minify-css": "*",
+    "gulp-imagemin": "*",
+    "gulp-less": "*",
+    "gulp-less-sourcemap": "*",
+    "gulp-cssimport": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-rigger": "*",
+    "gulp-uglify": "*",
+    "gulp-watch": "*",
+    "imagemin-pngquant": "*",
+    "opn": "*",
+    "rimraf": "*"
+  }
+}
