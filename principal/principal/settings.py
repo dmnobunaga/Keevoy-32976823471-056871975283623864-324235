@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pipeline',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -45,15 +44,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 
-ROOT_URLCONF = 'Principal.urls'
+ROOT_URLCONF = 'principal.urls'
 
-WSGI_APPLICATION = 'Principal.wsgi.application'
+# WSGI_APPLICATION = 'Principal.wsgi.application'
 
 
 # Database
