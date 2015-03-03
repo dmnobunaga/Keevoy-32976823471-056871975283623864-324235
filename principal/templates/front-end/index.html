@@ -853,18 +853,15 @@
             </div>
             <div class="page-content-holder">
                 <div class="col-lg-2"></div>
-                <div class="col-lg-8 input-group text-center">
-                    <input id="join_us_input" style="
-                    margin: auto;
-                    padding: 20px;
-                    width: 100%;
-                    "
-                           type="url" placeholder="Введите url вашего сайта"
+                <div class="col-lg-8 input-group text-center join_us_div">
+                    <input id="join_us_input"
+                           type="url" value="Введите url вашего сайта"
                            class="lets-start form-control"/>
                     <div class="input-group-addon input-group-btn">
-                        <button id="join_us_btn" style="display:none;margin-top:10px;padding: 8px" class="btn btn-primary">
-                        Продолжить
-                    </button></div>
+                        <button id="join_us_btn" class="btn btn-info">
+                            Продолжить
+                        </button>
+                    </div>
                 </div>
                 <div class="col-lg-2"></div>
             </div>
@@ -1020,15 +1017,6 @@
 <script type="text/javascript" src="../../static/front-end/build/js/all.js"></script>
 <!-- ./page scripts -->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#join_us_input").on("focus", function () {
-            if ($(this).val() === "") {
-                $(this).val("http://");
-            }
-        })
-    });
-</script>
 </body>
 </html>
 

@@ -15,7 +15,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
-    connect = require('gulp-connect'),
+    browserSync = require('browser-sync'),
     opn = require('opn');
 
 var path = {
@@ -40,6 +40,16 @@ var path = {
     clean: './build'
 };
 
+var config = {
+    proxy: "http://127.0.0.1:8000/",
+    files: [path.build.css + "*.css", path.build.js + "*.js"]
+};
+var reload  = browserSync(config).reload;
+
+gulp.task('browser-sync', function() {
+    browserSync(config);
+
+});
 gulp.task('style:build', function () {
     gulp.src(path.src.style) //Выберем наш style.less
         .pipe(prefixer()) //Добавим вендорные префиксы
@@ -47,9 +57,9 @@ gulp.task('style:build', function () {
         //.pipe(cssbase64()) // Img to Cssbase64
         .pipe(cssminify({keepSpecialComments:0})) //Сожмем
         .pipe(gulp.dest(path.build.css)) //И в build
-        .pipe(connect.reload());
-});
+        .pipe(reload({stream:true}));
 
+});
 gulp.task('image:build', function () {
     gulp.src(path.src.img) //Выберем наши картинки
         .pipe(imagemin({ //Сожмем их
@@ -57,8 +67,8 @@ gulp.task('image:build', function () {
             use: [pngquant()],
             interlaced: true
         }))
-        .pipe(gulp.dest(path.build.img)) //И бросим в build
-        .pipe(connect.reload());
+        .pipe(gulp.dest(path.build.img)) //И бросим в build;
+        .pipe(reload({stream:true}));
 });
 gulp.task('fonts:build', function() {
     gulp.src(path.src.fonts)
@@ -75,9 +85,21 @@ gulp.task('js:build', function () {
                 'front-end/js/plugins/revolution-slider/jquery.themepunch.tools.min.js',
                 'front-end/js/plugins/revolution-slider/jquery.themepunch.revolution.min.js',
                 'front-end/js/actions.js',
-                'front-end/js/slider.js'
+                'front-end/js/slider.js',
+                'front-end/js/main.js'
             ], { base: './' })) // Order
         .pipe(concat("all.js")) //Concat
         .pipe(gulp.dest(path.build.js)) //И в build
-        .pipe(connect.reload());
+        .pipe(reload({stream:true}));
+});
+gulp.task('default',['browser-sync'], function() {
+    gulp.watch("../../templates/front-end/*.html").on('change', reload);//Watch templates
+
+    gulp.watch(path.src.style,['style:build'], function() { //Watch style
+        //reload();
+    });
+
+    gulp.watch(path.src.js,['js:build'], function() { // Watch js
+        //reload();
+    });
 });

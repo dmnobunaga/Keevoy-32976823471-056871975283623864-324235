@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- META SECTION -->
+    <title>Ключевой - твой надёжный партнёр</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- END META SECTION -->
+    <link rel="stylesheet" type="text/css" href="../../static/front-end/build/css/styles.css" media="screen"/>
+    <script src="../../static/bower_components/angular/angular.min.js"></script>
+</head>
+<body>
+<!-- page container -->
+<div class="page-container">
+
+    <!-- page header -->
+    <div class="page-header">
+
+        <!-- page header holder -->
+        <div class="page-header-holder">
+
+            <!-- page logo -->
+            <div class="logo">
+                <a href="index.html">Ключевой - твой надёжный партнёр</a>
+            </div>
+            <!-- ./page logo -->
+
+
+            <!-- nav mobile bars -->
+            <div class="navigation-toggle">
+                <div class="navigation-toggle-button"><span class="fa fa-bars"></span></div>
+            </div>
+            <!-- ./nav mobile bars -->
+
+            <!-- navigation -->
+            <ul class="navigation">
+                <li>
+                    <a href="#advantages">Преимущества</a>
+                </li>
+                <li>
+                    <a href="#">Услуги</a>
+                </li>
+                <li>
+                    <a href="#tech">Технологии</a>
+                </li>
+                <li>
+                    <a href="#">База знаний</a>
+                </li>
+                <li>
+                    <a href="#">Контакты</a>
+                </li>
+                <li id="cabinet">
+                    <a href="#"><strong>Личный кабинет</strong></a>
+                </li>
+            </ul>
+            <!-- ./navigation -->
+
+
+        </div>
+        <!-- ./page header holder -->
+
+    </div>
+    <!-- ./page header -->
+
+    <!-- page content -->
+    <div class="page-content">
+        <div class="page-content-wrap start-bg">
+            <div class="page-content-holder padding-v-50">
+                <div style="padding-top: 3%; padding-left: 5%;padding-bottom: 50%">
+
+                    <form style="background: white; padding: 50px">
+                        <h3 style="font-weight: 100">Шаг 1</h3>
+                        <label for="website">Адрес вашего сайта</label>
+                        <input class="form-control" id="website" value="http://yoursite.com"/>
+                        <br>
+
+                        <div class="row">
+                            <div style="padding-left: 0px" class="col-lg-6">
+                                <label for="keywords">Поисковые запросы</label>
+
+                                <div class="input-group">
+                                    <input type="text" placeholder="Введите ключевое слово"
+                                           class="form-control"/>
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-warning">
+                                            Добавить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding-right: 0px" class="col-lg-6">
+                                <label for="budget">Бюджет вашей рекламной кампании</label>
+                                <input style="" class="form-control input-sm" id="budget" value="300 руб."/>
+                            </div>
+                        </div>
+                        <br>
+                         <table class="table table-bordered" id="keywords">
+                            <thead>
+                            <td style="width:75%">
+                                <strong>Ключевое слово</strong>
+                            </td>
+                            <td style="width: 20%">
+                                <strong>Индекс популярности</strong>
+                            </td>
+                            <td style="width: 5%"></td>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    купить матрёшку
+                                </td>
+                                <td>
+                                    <i class="fa fa-group popular"> Популярный</i>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default fa fa-trash-o"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    купить матрёшки
+                                </td>
+                                <td>
+                                    <i class="fa fa-group low_popular"> Непопулярный</i>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default fa fa-trash-o"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    купить крутые матрёшки
+                                </td>
+                                <td>
+                                    <i class="fa fa-group rare"> Редкий</i>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default fa fa-trash-o"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    купить крутые матрёшки в Москве
+                                </td>
+                                <td>
+                                    <i class="fa fa-group unknown"> Неизвестный</i>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default fa fa-trash-o"></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <button style="float: right;" class="btn btn-info">Посчитать объём привлечения</button>
+
+                        <div style='font-weight: 300;font-style: italic;font-size: large'>
+                            <span>Ожидаемый объём привлечения по заданным поисковым запросам:</span>
+                            <p><strong>125</strong> потенциальных клиентов в течении <strong>1 - 1.5 месяца</strong></p>
+                            <br>
+                        </div>
+                        <button style="float: right;" class="btn btn-warning">Продолжить</button>
+
+
+                    </form>
+                    <form style=";background: white; padding: 50px">
+                        <h3 style="font-weight: 100">Шаг 2</h3>
+                        <label for="email">Ваш Email</label>
+                        <input class="form-control" id="email" value="admin@sie.com"/>
+                        <label for="password">Придуймате пароль</label>
+                        <input type="password" class="form-control" id="password" value="http://yoursite.com"/>
+                        <label for="password">И введите его повторно</label>
+                        <input type="password" class="form-control" id="password2" value="http://yoursite.com"/>
+                        <br>
+                        <button style="float: right;" class="btn btn-success">Я ознакомлен с <a href="/rules.pdf">условиями обслуживания </a> и хочу перейти к оплате</button>
+                    </form>
+                    <div style="background: white; padding: 50px;">
+                        <form id="ShopForm" name="ShopForm" method="POST"
+                              action="https://money.yandex.ru/eshop.xml">
+                            <h3 style="font-weight: 100">Шаг 3</h3>
+                            <input type="hidden" class="form-control" name="ShopID" value="30483">
+                            <input type="hidden" name="scid" value="21375">
+                            <input type=hidden value="45446" name="shopArticleId">
+                            <input type=hidden value="45446" name="CustomerNumber">
+                            <input value="300" type=hidden name="Sum">
+                            <input value="admin@site.com" type=hidden name="CustEmail">
+                        </form>
+                        <h5>Сумма к оплате за продвижение по рекламной кампании №<strong>45446</strong>:
+                            <span style="font-size:21px;float:right;font-style: italic;font-weight: 100">300 руб.</span>
+                        </h5>
+
+                        <h6>Выберите способ оплаты:</h6>
+
+                        <select name="paymentType" form="ShopForm" class="form-control">
+                            <option value="PC">Оплата со счета в Яндекс.Деньгах</option>
+                            <option value="AC">Оплата банковской картой</option>
+                            <option value="GP">Оплата по коду через терминал</option>
+                            <option value="WM">Оплата cо счета WebMoney</option>
+                            <option value="AB">Оплата через Альфа-Клик</option>
+                        </select>
+                        <br>
+                        <input style="float: right;" class="btn btn-primary" form="ShopForm" type=submit value="Оплатить"><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./page footer -->
+
+</div>
+<!-- ./page container -->
+
+<!-- page scripts -->
+<script type="text/javascript">
+    var table = angular.Module
+</script>
+<!-- ./page scripts -->
+
+</body>
+</html>
+
+
+
+
+
+
