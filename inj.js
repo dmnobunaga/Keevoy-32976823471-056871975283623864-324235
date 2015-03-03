@@ -22,7 +22,7 @@
 !function(){function t(t){var i;this.X=0,this.Y=1,this.CX=2,this.CY=3,this.CURV=[],this.line=[],this.ctrl=[];for(var s=t.length/2,h=0;s>h;)this.ctrl.push(t.splice(0,2)),h++;for(t=this.ctrl.length-1,s=0;t>=s;s++)i=0===s?1:1===s?t:i*((t-s+1)/s),this.ctrl[s][this.CX]=this.ctrl[s][this.X]*i,this.ctrl[s][this.CY]=this.ctrl[s][this.Y]*i}t.prototype={bezier:function(){var i=[].splice.call(arguments,0);return this.ctrl=new t(i).ctrl,this},point:function(t){var i=this.ctrl,s=[],h=i.length-1,r=t;s.push([i[0][this.CX],i[0][this.CY]]);for(var n=1;h>=n;n++)s.push([i[n][this.CX]*r,i[n][this.CY]*r]),r*=t;for(i=s[h],r=t=1-t,n=h-1;n>=0;n--)i[this.X]+=s[n][this.X]*r,i[this.Y]+=s[n][this.Y]*r,r*=t;return i},curve:function(t){var i=[];t--;for(var s=0;t>=s;s++)i.push(this.point(s/t));return this.CURV=i,this},spline:function(t,i,s,h){s-=t,h-=i;for(var r,n=this.CURV.length,e=this.line.length,l=0,c=0,o=this.line,u=this.CURV,f=0;n>f;f++){var a=u[f][0],p=u[f][1];c++,r=f+e;var C=o,v=(h?a*s+t:p*s+t).toFixed(2),g=(p*h+i).toFixed(2),a=h?a-p:a,p=a-l,p=h?p*(c/100):p,l=a,p=0>p?-p:p;C[r]={x:v,y:g,easing:p}}return this},getSpline:function(){return this.line},getCurve:function(){return this.CURV}},window.bezier=function(i){return"object"!=typeof i&&(i=[].splice.call(arguments,0)),new t(i)}}();
 
 function getPosition() {
-    return [Math.floor(800 * Math.random()), Math.floor(600 * Math.random())]
+    return [Math.floor(1000 * Math.random()), Math.floor(1080 * Math.random())]
 }
 function createMoveMap(x0, y0, x1, y1, x2, y2, x3, y3, x4, y4, points) {
     var b = bezier(x0, y0, x1, y1, x2, y2, x3, y3, x4, y4);
@@ -54,15 +54,20 @@ var movecursor = function(){
             function(){
                 console.log(coord);
                 $(document).simulate('mousemove', {clientX: coord[0], clientY: coord[1]});
-            },37 * i);
+            }, _.random(15,300) * i);
     });
 };
-var scrolldown = function(){
-    var e = jQuery.Event( "mousewheel",{wheelDelta: -650} );
+var scroll = function(){
+    var e = jQuery.Event( "mousewheel",{wheelDelta: _.random(-100,300)} );
     jQuery(window).trigger(e);
-    window.scrollBy(0, 100);
+    window.scrollBy(0, _.random(-100,300));
 };
-$(window).on('scroll', function(evt) {
-console.log('scroll' + evt.delta);
-});
 
+setInterval(function(){
+        if (_.random(0,1) === 1) {
+            movecursor();
+        }else {
+            scroll();
+        }
+}, _.random(1000,4000)
+);
