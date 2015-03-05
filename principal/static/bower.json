@@ -16,6 +16,8 @@
   "dependencies": {
     "normalize.css": "*",
     "jquery": "2.*",
-    "reactable": "~0.10.1"
+    "reactable": "~0.10.1",
+    "angular": "*",
+    "angular-webstorage": "*"
   }
 }
