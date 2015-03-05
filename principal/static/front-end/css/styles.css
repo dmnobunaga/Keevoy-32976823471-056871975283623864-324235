@@ -1859,6 +1859,49 @@ input.lets-start {
 .unknown {
   color: darkgray;
 }
+.calculate {
+  float: right;
+}
+.col-left {
+  padding-left: 0px;
+}
+.page-container .page-content .page-content-wrap .page-content-holder h3.step {
+  font-weight: 100;
+}
+.page-container .page-content .page-content-wrap .page-content-holder form.step {
+  background: white;
+  padding: 50px;
+}
+.page-container .page-content .page-content-wrap .page-content-holder div.step {
+  background: white;
+  padding: 50px;
+}
+div.table-padding {
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-bottom: 50%;
+}
+#keywords > thead > tr > td:nth-child(1) {
+  width: 75%;
+}
+#keywords > thead > tr > td:nth-child(2) {
+  width: 20%;
+}
+#keywords > thead > tr > td:nth-child(3) {
+  width: 5%;
+}
+#keywords > tbody > tr > td {
+  font-size: larger;
+  vertical-align: middle;
+}
+.affiliate-budget {
+  padding-right: 0px;
+}
+.affiliate-info {
+  font-weight: 300;
+  font-style: italic;
+  font-size: large;
+}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   /* Styles */
