@@ -399,7 +399,7 @@ function panel_collapse(panel,action,callback){
 }
 function panel_refresh(panel,action,callback){        
     if(!panel.hasClass("panel-refreshing")){
-        panel.append('<div class="panel-refresh-layer"><img src="img/loaders/default.gif"/></div>');
+        panel.append('<div class="panel-refresh-layer"><img src="../img/loaders/default.gif"/></div>');
         panel.find(".panel-refresh-layer").width(panel.width()).height(panel.height());
         panel.addClass("panel-refreshing");
         
@@ -416,7 +416,7 @@ function panel_refresh(panel,action,callback){
 }
 function widget_refresh(widget,action,callback){
     if(!widget.hasClass("widget-refreshing")){
-        widget.append('<div class="widget-refresh-layer"><img src="img/loaders/default.gif"/></div>');
+        widget.append('<div class="widget-refresh-layer"><img src="../img/loaders/default.gif"/></div>');
         widget.find(".widget-refresh-layer").width(widget.width()).height(widget.height() + 25);
         widget.addClass("widget-refreshing");
 

@@ -11,6 +11,7 @@
     <script src="../../static/bower_components/angular/angular.min.js"></script>
     <script src="../../static/bower_components/angular-webstorage/angular-webstorage.min.js"></script>
     <script src="../../static/bower_components/underscore/underscore-min.js"></script>
+    <script src="../../static/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 {% verbatim %}
@@ -230,7 +231,7 @@
         return a.hostname + ":" + Math.floor(Math.random() * (9999999 - 1111111 + 1));
     }
     var app = angular.module('app', ['webStorageModule']);
-    app.controller('registration', function ($scope, webStorage) {
+    app.controller('registration', function ($scope, $http, webStorage) {
         $scope.keywords = [];
         $scope.clientsCount = 0;
         $scope.step = (webStorage.get('step') !== null) ? webStorage.get('step') : 1;
@@ -258,16 +259,38 @@
             webStorage.add('step', 2)
         };
         $scope.moveStep3 = function () {
-            $scope.step = 3;
+            var username = Math.floor(Math.random() * (999999 - 111111 + 1)); //Random in
+            $http({
+                method: 'POST',
+                url: "create_user",
+                data: $.param({
+                    username: username,
+                    usermail: $scope.user.email,
+                    userpass: $scope.user.password
+                }),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(response){
+                 if (!_.isUndefined(response.success)){
+                     console.log(response.success);
+                     console.log(response.user);
+                     $scope.step = 3;
+                     webStorage.add('step', 3)
+                 }
+                 if (!_.isUndefined(response.error)){
+                     console.log(response.error)
+                 }
+              }).error(function(response){
+                alert("Error "+response)
+            })
 
-            webStorage.add('step', 3)
+
         };
         $scope.getKeywordPrice = function (keyword) {
             //Call to external server
             if (keyword.word.indexOf('купить') != -1) {
                 return 2.0
             } else {
-                return 0.9;
+                return 0.6;
             }
         };
         $scope.calculateKeywords = function () {
