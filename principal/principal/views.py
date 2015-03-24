@@ -5,8 +5,12 @@ from django.shortcuts import render
 def main(request):
     return render(request, "front-end/index.html")
 
+
 def cabinet(request):
-    return render(request, "front-end/cabinet/index.html")
+    return render(request, "cabinet/index.html")
+
 
 def registration(request):
-    return render(request, "front-end/registration.html")
+    url = request.GET['site']
+    return render(request, "front-end/registration.html", locals())
+

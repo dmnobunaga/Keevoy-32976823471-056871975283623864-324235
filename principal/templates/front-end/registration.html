@@ -13,6 +13,7 @@
     <script src="../../static/bower_components/underscore/underscore-min.js"></script>
 </head>
 <body>
+{% verbatim %}
 <!-- page container -->
 <div class="page-container">
 
@@ -71,92 +72,113 @@
             <div class="page-content-holder padding-v-50">
                 <div class="table-padding" ng-controller="registration">
                     <form name="siteSettings" class="step" ng-hide="step !== 1">
-                            <h3 class="step">Шаг 1</h3>
-                            <label for="website">Адрес вашего сайта</label>
-                            <input class="form-control" ng-model="url" id="website" value="" required />
-                            <br>
+                        <h3 class="step">Шаг 1</h3>
+                        <label for="website">Адрес вашего сайта</label>
+                        <input class="form-control" ng-model="url" id="website" value="" required/>
+                        <br>
 
-                            <div class="row">
+                        <div class="row">
 
-                                <div class="col-left col-lg-6">
-                                    <label for="keywords">Поисковые запросы</label>
+                            <div class="col-left col-lg-6">
+                                <label for="keywords">Поисковые запросы</label>
 
-                                    <div class="input-group">
-                                        <input type="text" ng-model="keyword" placeholder="Введите ключевое слово"
-                                               class="form-control"/>
+                                <div class="input-group">
+                                    <input type="text" ng-model="keyword" placeholder="Введите ключевое слово"
+                                           class="form-control"/>
 
-                                        <div class="input-group-btn">
-                                            <button ng-click="addKeyword(keyword)" class="btn btn-warning">
-                                                Добавить
-                                            </button>
-                                        </div>
+                                    <div class="input-group-btn">
+                                        <button ng-click="addKeyword(keyword)" class="btn btn-warning">
+                                            Добавить
+                                        </button>
                                     </div>
                                 </div>
+                                <span ng-show="keywords.length == 0">Добавьте хоть 1 ключевое слово!</span>
 
-                                <div class="col-lg-6 affiliate-budget">
-                                    <label for="budget">Бюджет вашей рекламной кампании</label>
-                                    <input ng-model="budget" ng-focus="removeCurrency(budget)" ng-blur="addCurrency(budget)" class="form-control input-sm" id="budget" value=""/>
-                                </div>
                             </div>
+
+                            <div class="col-lg-6 affiliate-budget">
+                                <label for="budget">Бюджет вашей рекламной кампании</label>
+                                <input ng-model="budget" ng-focus="removeCurrency(budget)" ng-blur="addCurrency(budget)"
+                                       class="form-control input-sm" id="budget" value=""/>
+                            </div>
+                        </div>
+                        <br>
+                        <table ng-model="keywords" ng-hide="keywords.length === 0" class="table table-bordered"
+                               id="keywords">
+                            <thead>
+                            <td>
+                                <strong>Ключевое слово</strong>
+                            </td>
+                            <td>
+                                <strong>Индекс популярности</strong>
+                            </td>
+                            <td></td>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="keyword in keywords">
+                                <td>
+                                    {{ keyword.word }}
+                                </td>
+                                <td>
+                                    <i class="fa fa-group {{ keyword.class }}"> {{ keyword.popularity }}</i>
+                                    <a target="_blank"
+                                       href="https://www.google.ru/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q={{ keyword.word }}"><i
+                                            class="fa fa-google"></i></a>
+                                    <a target="_blank"
+                                       href="https://yandex.ru/yandsearch?lr=213&text={{ keyword.word }}"><i
+                                            class="fa fa-ya"></i></a>
+                                </td>
+                                <td>
+                                    <button ng-click="deleteKeyword($index, keyword)"
+                                            class="btn btn-default fa fa-trash-o"></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <button ng-click="calculateKeywords()" class="btn btn-info calculate">Рассчитать объём
+                            привлечения
+                        </button>
+
+                        <div class="affiliate-info">
+                            <span>Ожидаемый объём привлечения по заданным поисковым запросам:</span>
+
+                            <p><strong>{{ clientsCount }}</strong> потенциальных клиентов в течении <strong>1 - 1.5
+                                месяца</strong></p>
                             <br>
-                             <table ng-model="keywords" ng-hide="keywords.length === 0" class="table table-bordered" id="keywords">
-                                <thead>
-                                <td>
-                                    <strong>Ключевое слово</strong>
-                                </td>
-                                <td>
-                                    <strong>Индекс популярности</strong>
-                                </td>
-                                <td></td>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="keyword in keywords">
-                                    <td>
-                                        {{ keyword.word }}
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-group {{ keyword.class }}"> {{ keyword.popularity }}</i>
-                                        <a target="_blank" href="https://www.google.ru/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q={{ keyword.word }}"><i class="fa fa-google"></i></a>
-                                        <a target="_blank" href="https://yandex.ru/yandsearch?lr=213&text={{ keyword.word }}"><i class="fa fa-ya"></i></a>
-                                    </td>
-                                    <td>
-                                        <button  ng-click="deleteKeyword($index, keyword)" class="btn btn-default fa fa-trash-o"></button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <button ng-click="calculateKeywords()" class="btn btn-info calculate">Рассчитать объём привлечения</button>
-
-                            <div class="affiliate-info">
-                                <span>Ожидаемый объём привлечения по заданным поисковым запросам:</span>
-                                <p><strong>{{ clientsCount }}</strong> потенциальных клиентов в течении <strong>1 - 1.5 месяца</strong></p>
-                                <br>
-                                <span>Это открытая альфа версия, сроки и объём могут значительно отличаться от реального.</span>
-                            </div>
-                            <button ng-click="moveStep2()" style="float: right;" class="btn btn-warning">Продолжить</button>
+                            <span>Это закрытая альфа версия, сроки и объём могут значительно отличаться от реального.</span>
+                        </div>
+                        <button ng-disabled="keywords.length == 0" ng-click="moveStep2()" style="float: right;"
+                                class="btn btn-warning">Продолжить
+                        </button>
 
 
-                        </form>
+                    </form>
                     <form name="registrationForm" class="step" ng-hide="step !== 2">
-                            <h3 class="step">Шаг 2</h3>
-                            <h5>Заполните форму</h5>
-                            <label for="email">Ваш Email</label>
-                            <span ng-show="registrationForm.email.$error.required">Заполните поле!</span>
-                            <span ng-show="registrationForm.email.$error.email">Неверный email!</span>
-                            <input name="email" type="email" class="form-control" ng-model="user.email" id="email" value="1" required />
-                            <label for="password">Придуймате пароль</label>
-                            <span ng-show="registrationForm.password.$error.required">Заполните поле!</span>
-                            <span ng-show="registrationForm.password.$error.email">Неверный email!</span>
-                            <input name="password" type="password" ng-model="user.password" class="form-control" id="password" value="1" required />
-                            <label for="password2">И введите его повторно</label>
-                            <span ng-show="registrationForm.password2.$error.required">Заполните поле!</span>
-                            <span ng-show="registrationForm.password2.$error.email">Неверный email!</span>
-                            <span ng-show="user.password != user.password2">Пароли не совпадают</span>
-                            <input name="password2" type="password" ng-model="user.password2" class="form-control" id="password2" value="1" required />
-                            <br>
-                            <button ng-click="moveStep1()" class="btn btn-warning">Назад</button>
-                            <button ng-click="moveStep3()" ng-disabled="registrationForm.$invalid" style="float: right;" class="btn btn-success">Я ознакомлен с <a href="/rules.pdf">условиями обслуживания </a> и хочу перейти к оплате</button>
+                        <h3 class="step">Шаг 2</h3>
+                        <h5>Заполните форму</h5>
+                        <label for="email">Ваш Email</label>
+                        <span ng-show="registrationForm.email.$error.required">Заполните поле!</span>
+                        <span ng-show="registrationForm.email.$error.email">Неверный email!</span>
+                        <input name="email" type="email" class="form-control" ng-model="user.email" id="email" value="1"
+                               required/>
+                        <label for="password">Придуймате пароль</label>
+                        <span ng-show="registrationForm.password.$error.required">Заполните поле!</span>
+                        <span ng-show="registrationForm.password.$error.email">Неверный email!</span>
+                        <input name="password" type="password" ng-model="user.password" class="form-control"
+                               id="password" value="1" required/>
+                        <label for="password2">И введите его повторно</label>
+                        <span ng-show="registrationForm.password2.$error.required">Заполните поле!</span>
+                        <span ng-show="registrationForm.password2.$error.email">Неверный email!</span>
+                        <span ng-show="user.password != user.password2">Пароли не совпадают</span>
+                        <input name="password2" type="password" ng-model="user.password2" class="form-control"
+                               id="password2" value="1" required/>
+                        <br>
+                        <button ng-click="moveStep1()" class="btn btn-warning">Назад</button>
+                        <button ng-click="moveStep3()" ng-disabled="registrationForm.$invalid" style="float: right;"
+                                class="btn btn-success">Я ознакомлен с <a href="/rules.pdf">условиями обслуживания </a>
+                            и хочу перейти к оплате
+                        </button>
                     </form>
                     <div class="step" ng-hide="step !== 3">
                         <form id="ShopForm" name="ShopForm" method="POST"
@@ -164,12 +186,12 @@
                             <h3 class="step">Шаг 3</h3>
                             <input type="hidden" class="form-control" name="ShopID" value="30483">
                             <input type="hidden" name="scid" value="21375">
-                            <input type=hidden value="{{ url|generateId }}" name="shopArticleId">
-                            <input type=hidden value="{{ url|generateId }}" name="CustomerNumber">
+                            <input type=hidden value="{{ campaign_id }}" name="shopArticleId">
+                            <input type=hidden value="{{ campaign_id }}" name="CustomerNumber">
                             <input value="{{ budget|removeCurrency }}" type=hidden name="Sum">
                             <input value="{{ user.email }}" type=hidden name="CustEmail">
                         </form>
-                        <h5>Сумма к оплате за продвижение по рекламной кампании <strong>{{ url|generateId }}</strong>:
+                        <h5>Сумма к оплате за продвижение по рекламной кампании <strong>{{ campaign_id }}</strong>:
                             <span style="font-size:21px;float:right;font-style: italic;font-weight: 100">{{ budget }}</span>
                         </h5>
 
@@ -184,7 +206,12 @@
                         </select>
                         <br>
                         <button ng-click="moveStep2()" class="btn btn-warning">Назад</button>
-                        <input style="float: right;" class="btn btn-primary" form="ShopForm" type=submit value="Оплатить"><br>
+                        <div class="form-inline" style="float: right;">
+                            <a href="/login" style="border-color: #c7c7c7" class="btn btn-default" type="button"
+                                   >Пропустить шаг и перейти в личный кабинет</a>
+                            <input style="float: right;" class="btn btn-primary" form="ShopForm" type=submit
+                                   value="Оплатить"><br>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,72 +221,84 @@
 
 </div>
 <!-- ./page container -->
-
+{% endverbatim %}
 <!-- page scripts -->
 <script type="text/javascript">
+    function generateId(host){
+        var a = document.createElement('a');
+        a.href = host;
+        return a.hostname + ":" + Math.floor(Math.random() * (9999999 - 1111111 + 1));
+    }
     var app = angular.module('app', ['webStorageModule']);
     app.controller('registration', function ($scope, webStorage) {
         $scope.keywords = [];
         $scope.clientsCount = 0;
         $scope.step = (webStorage.get('step') !== null) ? webStorage.get('step') : 1;
-        $scope.url = "http://yoursite.com";
+        $scope.url = "{{ url }}";
+        $scope.getCampaignId = function(){
+            var campaign_id = generateId($scope.url);
+            webStorage.add('campaign_id', campaign_id);
+            return campaign_id
+        };
+        $scope.campaign_id = (webStorage.get('campaign_id') !== null) ? webStorage.get('campaign_id') : $scope.getCampaignId();
         $scope.budget = "300 руб.";
+
         $scope.user = {
             "email": "",
             "email_pattern": /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,
             "password": "",
             "password2": ""
         };
-        $scope.moveStep1 = function (){
+        $scope.moveStep1 = function () {
             $scope.step = 1;
             webStorage.add('step', 1)
         };
-        $scope.moveStep2 = function (){
+        $scope.moveStep2 = function () {
             $scope.step = 2;
             webStorage.add('step', 2)
         };
-        $scope.moveStep3 = function (){
+        $scope.moveStep3 = function () {
             $scope.step = 3;
 
             webStorage.add('step', 3)
         };
-        $scope.getKeywordPrice = function(keyword){
+        $scope.getKeywordPrice = function (keyword) {
             //Call to external server
-            if (keyword.word.indexOf('купить') != -1){
+            if (keyword.word.indexOf('купить') != -1) {
                 return 2.0
-            }else{
+            } else {
                 return 0.9;
             }
         };
-        $scope.calculateKeywords = function(){
+        $scope.calculateKeywords = function () {
             var keywordPrice = 0;
-            _.each($scope.keywords, function(keyword){
+            _.each($scope.keywords, function (keyword) {
                 keywordPrice = keywordPrice + $scope.getKeywordPrice(keyword);
 
             });
             keywordPrice = keywordPrice / $scope.keywords.length;
-            $scope.clientsCount = (parseFloat($scope.budget.replace(' руб.','')) / parseFloat(keywordPrice)).toFixed(2);
+            $scope.clientsCount = (parseFloat($scope.budget.replace(' руб.', '')) / parseFloat(keywordPrice)).toFixed(2);
         };
-        $scope.removeCurrency = function(budget){
-            if (budget){
-                $scope.budget = budget.replace(' руб.','');
+        $scope.removeCurrency = function (budget) {
+            if (budget) {
+                $scope.budget = budget.replace(' руб.', '');
                 console.log(budget);
             }
         };
 
-        $scope.addCurrency = function(budget){
-            if (budget){
+        $scope.addCurrency = function (budget) {
+            if (budget) {
                 budget = budget + " руб.";
                 $scope.budget = budget;
                 console.log(budget);
             }
         };
-        $scope.addKeyword = function(keyword){
-            if (keyword.length >= 1){
+        $scope.addKeyword = function (keyword) {
+            if (keyword.length >= 1) {
                 $scope.keywords.push({
-                    "word":keyword,
-                    "class":"unknown",
-                    "popularity":"Неизвестный"
+                    "word": keyword,
+                    "class": "unknown",
+                    "popularity": "Неизвестный"
                 });
                 $scope.keyword = "";
                 $scope.calculateKeywords()
@@ -271,22 +310,21 @@
         };
 
     });
-    app.filter('removeCurrency', function() {
-      return function(budget) {
-        return budget.replace(' руб.','');
-      };
+    app.filter('removeCurrency', function () {
+        return function (budget) {
+            return budget.replace(' руб.', '');
+        };
     });
-    app.filter('generateId', function() {
-      return function(string) {
-          var    a      = document.createElement('a');
-                 a.href = string;
-          return a.hostname;
-      };
+    app.filter('generateId', function () {
+        return function (string) {
+            var a = document.createElement('a');
+            a.href = string;
+            return a.hostname + ":" + Math.floor(Math.random() * (9999 - 1111 + 1)) + 11111;
+        };
     });
 
 </script>
 <!-- ./page scripts -->
-
 </body>
 </html>
 
