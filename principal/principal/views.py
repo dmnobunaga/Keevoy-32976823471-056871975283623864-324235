@@ -1,10 +1,12 @@
 # coding=utf-8
 __author__ = 'Dmitry Panchev'
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from models import ClientProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from PIL import BmpImagePlugin, PngImagePlugin, Image
 import operator
 import struct
@@ -87,21 +89,62 @@ def main(request):
     return render(request, "front-end/index.html")
 
 
+@login_required(login_url='/login')
 def cabinet(request):
     return render(request, "cabinet/index.html")
 
 
+@login_required(login_url='/login')
+def campaign(request):
+    return render(request, "cabinet/campaign.html")
+
+
+def user_login(request):
+    if request.method == u"POST":
+        username = request.POST.get(u"username", None)
+        password = request.POST.get(u"password", None)
+        email_username = User.objects.filter(email=username).first()
+        if email_username:
+            user = authenticate(username=email_username.username, password=password)
+        else:
+            user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect("cabinet")
+            else:
+                return HttpResponse(u"Error")
+        else:
+            return HttpResponse(u"User not exist")
+    return render(request, u"cabinet/login.html")
+
+
 def registration(request):
-    url = request.GET['site']
+    url = request.GET.get('site', None)
+    if not url:
+        url = "http://"
     return render(request, "front-end/registration.html", locals())
 
 
 @csrf_exempt
+def campaign_save(request):
+    if request.method == "POST":
+        campaign_id = request.POST.get("campaign_id", None)
+        url = request.POST.get("url", None)
+        keywords = request.POST.getlist("keywords[]", None)
+        regions = request.POST.getlist("regions[]", None)
+        budget = request.POST.get("budget", None)
+        if campaign_id and url and keywords and regions and budget:
+            return JsonResponse({u"success": u"РК Сохранена", })
+        else:
+            return JsonResponse({u"error": u"Не все поля заполнены!", })
+
+@csrf_exempt
 def create_user(request):
     if request.method == "POST":
-        username = request.POST.get('username', None)
-        userpass = request.POST.get('userpass', None)
-        usermail = request.POST.get('usermail', None)
+        username = request.POST.get("username", None)
+        userpass = request.POST.get("userpass", None)
+        usermail = request.POST.get("usermail", None)
         if username and userpass and usermail:
             if User.objects.filter(email=usermail).first():
                 return JsonResponse({u'error': u'Email уже зарегистрирован!'})
@@ -111,15 +154,22 @@ def create_user(request):
                 email=usermail,
                 username=username,
                 password=userpass)
-            client_profile = ClientProfile.objects.get_or_create(user=user)
+            client_profile, created = ClientProfile.objects.get_or_create(user=user)
             if user:
                 user_auth = authenticate(username=username, password=userpass)
                 if user_auth:
                     login(request, user_auth)
                     return JsonResponse({
                         u"success": u"Пользователь создан!",
-                        u"user": user.username
+                        u"user": user.username,
+                        u"email": user.email,
+                        u"balance": client_profile.balance
                     })
+                else:
+                    return JsonResponse({
+                        u"error": u"Can't login with new user",
+                    })
+
             else:
                 return JsonResponse({u'error': u'Ошибка создания пользователя. user'})
         else:

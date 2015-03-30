@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" id="theme" href="../../static/cabinet/css/theme-default.css"/>
     <!-- EOF CSS INCLUDE -->
 </head>
+{% verbatim %}
 <body class="page-container-boxed">
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
@@ -45,14 +46,13 @@
             </li>
 
 
-
         </ul>
         <!-- END X-NAVIGATION -->
     </div>
     <!-- END PAGE SIDEBAR -->
 
     <!-- PAGE CONTENT -->
-    <div class="page-content">
+    <div class="page-content" ng-app="app">
 
         <!-- START X-NAVIGATION VERTICAL -->
         <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
@@ -83,23 +83,22 @@
         <!-- END BREADCRUMB -->
 
         <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap">
+        <div class="page-content-wrap" hidden="true" id="page">
 
             <!-- START WIDGETS -->
-            <div class="row">
+            <div class="row" ng-controller="widgets">
                 <div class="col-md-12">
                     <h2>Общая информация</h2>
                 </div>
                 <div class="col-md-3">
 
                     <!-- START WIDGET REGISTRED -->
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href='pages-address-book.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
                             <span class="fa fa-external-link"></span>
                         </div>
                         <div class="widget-data">
-                            <div class="widget-int num-count">1</div>
+                            <div class="widget-int num-count">{{ user.total.count }}</div>
                             <div class="widget-title">В работе</div>
                             <div class="widget-subtitle">Рекламные кампании</div>
                         </div>
@@ -108,13 +107,12 @@
                 <div class="col-md-3">
 
 
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href='pages-address-book.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
                             <span class="fa fa-group"></span>
                         </div>
                         <div class="widget-data">
-                            <div class="widget-int num-count">171 000</div>
+                            <div class="widget-int num-count">{{ user.total.volume }}</div>
                             <div class="widget-title">Посетителей</div>
                             <div class="widget-subtitle">Объём привлечения</div>
                         </div>
@@ -123,13 +121,12 @@
 
                 </div>
                 <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href='pages-address-book.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
                             <span class="fa fa-ruble"></span>
                         </div>
                         <div class="widget-data">
-                            <div class="widget-int num-count">159 950</div>
+                            <div class="widget-int num-count">{{ user.total.budget }}</div>
                             <div class="widget-title">Бюджет</div>
                             <div class="widget-subtitle">Суммарный бюджет рекламных кампаний</div>
                         </div>
@@ -149,98 +146,59 @@
                 </div>
             </div>
             <!-- END WIDGETS -->
-            <div class="row">
+            <div class="row" ng-controller="campaigns">
                 <div class="col-md-12">
-                    <h2>Рекламные кампании</h2>
+                    <h2 ng-hide="campaigns.length == 0">Рекламные кампании</h2>
                 </div>
-                <div class="col-md-4">
+
+                <div class="col-md-4" ng-repeat="campaign in campaigns">
                     <div class="panel panel-default">
                         <div class="panel-heading ui-draggable-handle">
                             <ul class="panel-controls">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-up"></span></a></li>
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li><a href="#" class="panel-default"><span class="fa fa-wrench"></span></a></li>
                                 <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
-                            <img src="https://cdn0.iconfinder.com/data/icons/yooicons_set01_socialbookmarks/512/social_google_box_blue.png"
+                            <img src="{{campaign.website.icon}}"
                                  alt="Google" class="panel-title-image">
-                            <h3 class="panel-title">Google</h3>
+
+                            <h3 class="panel-title">{{campaign.website.title}}</h3>
                         </div>
                         <div class="panel-body list-group">
                             <a href="#" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
-                                    class="badge badge-success">Запущена</span></a>
+                                    class="badge badge-{{campaign.status.class}}">{{ campaign.status.text }}</span></a>
                             <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
-                                    class="badge badge-default">100 000 посетителей</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Период <span
-                                    class="badge badge-danger">1 месяц</span></a>
-                                <a href="#" class="list-group-item"><span class="fa fa-search-plus"></span> Ключевые
-                                    слова<span
-                                            class="badge badge-info">7 слов</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span
-                                    class="badge badge-danger">60 000 руб.</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading ui-draggable-handle">
-                            <ul class="panel-controls">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li><a href="#" class="panel-default"><span class="fa fa-wrench"></span></a></li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                            </ul>
-                            <img src="http://icdn.lenta.ru/lenta_touch.png"
-                                 alt="Lenta.ru" class="panel-title-image">
-                            <h3 class="panel-title">Lenta.ru</h3>
-                        </div>
-
-                        <div class="panel-body list-group">
-                            <a href="#" class="list-group-item"><span class="fa fa-clock-o"></span> Статус <span
-                                    class="badge badge-warning">На модерации</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
-                                    class="badge badge-default">25 500 посетителей</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Период <span
-                                    class="badge badge-danger">1 месяц</span></a>
-                                <a href="#" class="list-group-item"><span class="fa fa-search-plus"></span> Ключевые
-                                    слова<span
-                                            class="badge badge-info">15 слов</span></a>
+                                    class="badge badge-default">{{campaign.volume}}</span></a>
+                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Дата начала <span
+                                    class="badge badge-danger">{{campaign.start}}</span></a>
+                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Дата окончания <span
+                                    class="badge badge-danger">{{campaign.end}}</span></a>
+                            <a ng-click="isCampaignOpen = !isCampaignOpen" href="#keywords?{{ campaign.id }}" class="list-group-item">
+                                <span class="fa fa-search-plus"></span> Ключевые слова
+                                <span class="badge badge-info">{{ campaign.keywords_count }}</span>
                             </a>
+                            <table ng-show="isCampaignOpen" ng-model="campaign.keywords"
+                                   class="table table-bordered"
+                                   id="keywords">
+                                <tbody>
+                                <tr ng-repeat="keyword in campaign.keywords">
+                                    <td>
+                                        {{ keyword.word }}
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-group {{ keyword.class }}"> {{ keyword.popularity }}</i>
+                                        <a target="_blank"
+                                           href="https://www.google.ru/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q={{ keyword.word }}"><i
+                                                class="fa fa-google"></i></a>
+                                        <a target="_blank"
+                                           href="https://yandex.ru/yandsearch?lr=213&text={{ keyword.word }}"><i
+                                                class="fa fa-ya"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span
-                                    class="badge badge-danger">40 800 руб.</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading ui-draggable-handle">
-                            <ul class="panel-controls">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li><a href="#" class="panel-default"><span class="fa fa-wrench"></span></a></li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                            </ul>
-                            <img src="http://www.anews.com/s/images/touch-icon-iphone.png"
-                                 alt="Anews" class="panel-title-image">
-
-                            <h3 class="panel-title">ANews</h3>
-                        </div>
-
-                        <div class="panel-body list-group">
-                            <a href="#" class="list-group-item"><span class="fa fa-clock-o"></span> Статус <span
-                                    class="badge badge-primary">Завершена</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
-                                    class="badge badge-default">45 500 посетителей</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Период <span
-                                    class="badge badge-danger">1 месяц</span></a>
-
-                                <a href="#" class="list-group-item"><span class="fa fa-search-plus"></span> Ключевые
-                                    слова<span
-                                            class="badge badge-info">5 слов</span></a>
-                            </a>
-                            <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span
-                                    class="badge badge-danger">59 150 руб.</span></a>
+                                    class="badge badge-danger">{{campaign.budget}} руб.</span></a>
                         </div>
                     </div>
                 </div>
@@ -248,7 +206,7 @@
             <div class="row">
                 <div class="cl-md-8">
                     <div class="cl-md-4 text-center">
-                        <button class="btn btn-rounded btn-primary">Создать рекламную кампанию</button>
+                        <a href="/campaign/new" class="btn btn-primary">Создать рекламную кампанию</a>
                     </div>
                 </div>
             </div>
@@ -290,11 +248,16 @@
 <script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript"
+        src="../../static/bower_components/angular-webstorage/angular-webstorage.min.js"></script>
+<script type="text/javascript" src="../../static/bower_components/underscore/underscore-min.js"></script>
 <!-- END PLUGINS -->
 
 <!-- START THIS PAGE PLUGINS-->
 <script type='text/javascript' src='../../static/cabinet/js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="../../static/cabinet/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript"
+        src="../../static/cabinet/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
 <script type='text/javascript' src='../../static/cabinet/js/plugins/bootstrap/bootstrap-datepicker.js'></script>
@@ -308,6 +271,124 @@
 <script type="text/javascript" src="../../static/cabinet/js/settings.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/actions.js"></script>
+<script type="text/javascript">
+    function declOfNum(number, titles)
+    {
+        cases = [2, 0, 1, 1, 1, 2];
+        return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+    }
+    var app = angular.module('app', ['webStorageModule']);
+    app.controller('widgets', function ($scope) {
+        $scope.user = {
+            "total": {
+                "count": 1 + " " + declOfNum(1,['слово','слова','слов']),
+                "volume": 40000,
+                "budget": 4000
+            }
+        }
+    });
+    app.controller('campaigns', function ($scope, $http, webStorage) {
+        $scope.deleteKeyword = function ($index, keyword) {
+            $scope.keywords.splice($index, 1);
+            $scope.$emit('eventDeleted', keyword);
+        };
+        var keyword = {
+            "popularity": "",
+            "word": "Иcкать в интернете"
+        };
+        var keyword1 = {
+            "popularity": "",
+            "word": "Гугл"
+        };
+        var campaign = {
+            "website": {
+                "icon": "http://zizaza.com/cache/big_thumb/iconset/581371/581377/PNG/128/flat_social_icons/google_plus_google_plus_icon_flat_icon_google_plus_png_flat_social_icons.png",
+                "title": "Google"
+            },
+            "status": {
+                "text": "Запущено",
+                "class": "success"
+            },
+            "volume": "100 000 " + declOfNum(100000,['посетитель','посетителя','посетителей']),
+            "start": "29 марта 2015",
+            "end": "18 июня 2015",
+            "keywords": [
+                keyword,
+                keyword1
+            ],
+            "budget":"12 000"
+        };
+        campaign.keywords_count = campaign.keywords.length + " " + declOfNum(campaign.keywords.length,['слово','слова','слов']);
+
+        $scope.campaigns = [campaign];
+        console.log($scope.campaigns)
+
+    });
+    $("#page").removeAttr("hidden")
+</script>
+{% endverbatim %}
+{#                <div class="col-md-4">#}
+{#                    <div class="panel panel-default">#}
+{#                        <div class="panel-heading ui-draggable-handle">#}
+{#                            <ul class="panel-controls">#}
+{#                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>#}
+{#                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+{#                                <li><a href="#" class="panel-default"><span class="fa fa-wrench"></span></a></li>#}
+{#                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>#}
+{#                            </ul>#}
+{#                            <img src="http://icdn.lenta.ru/lenta_touch.png"#}
+{#                                 alt="Lenta.ru" class="panel-title-image">#}
+{#                            <h3 class="panel-title">Lenta.ru</h3>#}
+{#                        </div>#}
+{##}
+{#                        <div class="panel-body list-group">#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-clock-o"></span> Статус <span#}
+{#                                    class="badge badge-warning">На модерации</span></a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span#}
+{#                                    class="badge badge-default">25 500 посетителей</span></a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Период <span#}
+{#                                    class="badge badge-danger">1 месяц</span></a>#}
+{#                                <a href="#" class="list-group-item"><span class="fa fa-search-plus"></span> Ключевые#}
+{#                                    слова<span#}
+{#                                            class="badge badge-info">15 слов</span></a>#}
+{#                            </a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span#}
+{#                                    class="badge badge-danger">40 800 руб.</span></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-4">#}
+{#                    <div class="panel panel-default">#}
+{##}
+{#                        <div class="panel-heading ui-draggable-handle">#}
+{#                            <ul class="panel-controls">#}
+{#                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>#}
+{#                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+{#                                <li><a href="#" class="panel-default"><span class="fa fa-wrench"></span></a></li>#}
+{#                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>#}
+{#                            </ul>#}
+{#                            <img src="http://www.anews.com/s/images/touch-icon-iphone.png"#}
+{#                                 alt="Anews" class="panel-title-image">#}
+{##}
+{#                            <h3 class="panel-title">ANews</h3>#}
+{#                        </div>#}
+{##}
+{#                        <div class="panel-body list-group">#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-clock-o"></span> Статус <span#}
+{#                                    class="badge badge-primary">Завершена</span></a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span#}
+{#                                    class="badge badge-default">45 500 посетителей</span></a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Период <span#}
+{#                                    class="badge badge-danger">1 месяц</span></a>#}
+{##}
+{#                                <a href="#" class="list-group-item"><span class="fa fa-search-plus"></span> Ключевые#}
+{#                                    слова<span#}
+{#                                            class="badge badge-info">5 слов</span></a>#}
+{#                            <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span#}
+{#                                    class="badge badge-danger">59 150 руб.</span></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
 </body>
 </html>
 

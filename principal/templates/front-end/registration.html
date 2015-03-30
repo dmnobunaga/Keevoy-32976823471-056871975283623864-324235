@@ -55,7 +55,7 @@
                     <a href="#">Контакты</a>
                 </li>
                 <li id="cabinet">
-                    <a href="#"><strong>Личный кабинет</strong></a>
+                    <a href="/login"><strong>Личный кабинет</strong></a>
                 </li>
             </ul>
             <!-- ./navigation -->
@@ -97,7 +97,7 @@
 
                             </div>
 
-                            <div class="col-lg-6 affiliate-budget">
+                            <div class="affiliate-budget col-lg-6">
                                 <label for="budget">Бюджет вашей рекламной кампании</label>
                                 <input ng-model="budget" ng-focus="removeCurrency(budget)" ng-blur="addCurrency(budget)"
                                        class="form-control input-sm" id="budget" value=""/>
@@ -157,29 +157,41 @@
                     </form>
                     <form name="registrationForm" class="step" ng-hide="step !== 2">
                         <h3 class="step">Шаг 2</h3>
-                        <h5>Заполните форму</h5>
-                        <label for="email">Ваш Email</label>
-                        <span ng-show="registrationForm.email.$error.required">Заполните поле!</span>
-                        <span ng-show="registrationForm.email.$error.email">Неверный email!</span>
-                        <input name="email" type="email" class="form-control" ng-model="user.email" id="email" value="1"
-                               required/>
-                        <label for="password">Придуймате пароль</label>
-                        <span ng-show="registrationForm.password.$error.required">Заполните поле!</span>
-                        <span ng-show="registrationForm.password.$error.email">Неверный email!</span>
-                        <input name="password" type="password" ng-model="user.password" class="form-control"
-                               id="password" value="1" required/>
-                        <label for="password2">И введите его повторно</label>
-                        <span ng-show="registrationForm.password2.$error.required">Заполните поле!</span>
-                        <span ng-show="registrationForm.password2.$error.email">Неверный email!</span>
-                        <span ng-show="user.password != user.password2">Пароли не совпадают</span>
-                        <input name="password2" type="password" ng-model="user.password2" class="form-control"
-                               id="password2" value="1" required/>
-                        <br>
-                        <button ng-click="moveStep1()" class="btn btn-warning">Назад</button>
-                        <button ng-click="moveStep3()" ng-disabled="registrationForm.$invalid" style="float: right;"
-                                class="btn btn-success">Я ознакомлен с <a href="/rules.pdf">условиями обслуживания </a>
-                            и хочу перейти к оплате
-                        </button>
+                        <div ng-hide="user_created !== true">
+                            <h5>Аккаунт уже создан!</h5>
+                            <label>Ваш Идентификатор клиента: {{ user.username }}</label><br>
+                            <label>Ваш Email: {{ user.email }}</label><br>
+                            <button ng-click="moveStep1()" class="btn btn-warning">Назад</button>
+                            <button ng-click="gotoStep3()" style="float: right;"
+                                    class="btn btn-success">Перейти к оплате
+                            </button>
+
+                        </div>
+                        <div ng-hide="user_created == true">
+                            <h5>Заполните форму</h5>
+                            <label for="email">Ваш Email</label>
+                            <span ng-show="registrationForm.email.$error.required">Заполните поле!</span>
+                            <span ng-show="registrationForm.email.$error.email">Неверный email!</span>
+                            <input name="email" type="email" class="form-control" ng-model="user.email" id="email" value="1"
+                                   required/>
+                            <label for="password">Придуймате пароль</label>
+                            <span ng-show="registrationForm.password.$error.required">Заполните поле!</span>
+                            <span ng-show="registrationForm.password.$error.email">Неверный email!</span>
+                            <input name="password" type="password" ng-model="user.password" class="form-control"
+                                   id="password" value="1" required/>
+                            <label for="password2">И введите его повторно</label>
+                            <span ng-show="registrationForm.password2.$error.required">Заполните поле!</span>
+                            <span ng-show="registrationForm.password2.$error.email">Неверный email!</span>
+                            <span ng-show="user.password != user.password2">Пароли не совпадают</span>
+                            <input name="password2" type="password" ng-model="user.password2" class="form-control"
+                                   id="password2" value="1" required/>
+                            <br>
+                            <button ng-click="moveStep1()" class="btn btn-warning">Назад</button>
+                            <button ng-click="moveStep3()" ng-disabled="registrationForm.$invalid" style="float: right;"
+                                    class="btn btn-success">Я ознакомлен с <a href="/rules.pdf">условиями обслуживания </a>
+                                и хочу перейти к оплате
+                            </button>
+                        </div>
                     </form>
                     <div class="step" ng-hide="step !== 3">
                         <form id="ShopForm" name="ShopForm" method="POST"
@@ -243,13 +255,16 @@
         };
         $scope.campaign_id = (webStorage.get('campaign_id') !== null) ? webStorage.get('campaign_id') : $scope.getCampaignId();
         $scope.budget = "300 руб.";
-
+        $scope.user_created = (webStorage.get('user_created') !== null) ? webStorage.get('user_created') : false;
         $scope.user = {
-            "email": "",
+            "username": (webStorage.get('username') !== null) ? webStorage.get('username') : "",
+            "email": (webStorage.get('email') !== null) ? webStorage.get('email') : "",
+            "balance": (webStorage.get('balance') !== null) ? webStorage.get('balance') : "",
             "email_pattern": /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,
             "password": "",
             "password2": ""
         };
+        console.log($scope.user);
         $scope.moveStep1 = function () {
             $scope.step = 1;
             webStorage.add('step', 1)
@@ -257,6 +272,10 @@
         $scope.moveStep2 = function () {
             $scope.step = 2;
             webStorage.add('step', 2)
+        };
+        $scope.gotoStep3 = function () {
+            $scope.step = 3;
+            webStorage.add('step', 3)
         };
         $scope.moveStep3 = function () {
             var username = Math.floor(Math.random() * (999999 - 111111 + 1)); //Random in
@@ -271,9 +290,15 @@
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function(response){
                  if (!_.isUndefined(response.success)){
-                     console.log(response.success);
-                     console.log(response.user);
+                     webStorage.add('username',response.user);
+                     webStorage.add('email',response.email);
+                     webStorage.add('balance',response.balance);
+                     webStorage.add('user_created',true);
                      $scope.step = 3;
+                     $scope.user.username = response.user;
+                     $scope.user.email = response.email;
+                     $scope.user.balance = response.balance;
+                     $scope.user_created = true;
                      webStorage.add('step', 3)
                  }
                  if (!_.isUndefined(response.error)){
@@ -281,8 +306,7 @@
                  }
               }).error(function(response){
                 alert("Error "+response)
-            })
-
+            });
 
         };
         $scope.getKeywordPrice = function (keyword) {
@@ -290,7 +314,7 @@
             if (keyword.word.indexOf('купить') != -1) {
                 return 2.0
             } else {
-                return 0.6;
+                return 0.9;
             }
         };
         $scope.calculateKeywords = function () {
@@ -308,7 +332,6 @@
                 console.log(budget);
             }
         };
-
         $scope.addCurrency = function (budget) {
             if (budget) {
                 budget = budget + " руб.";

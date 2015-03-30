@@ -241,7 +241,8 @@ body {
   padding-right: 50px;
 }
 body.page-container-boxed {
-  background: url("../img/backgrounds/wall_1.jpg") top repeat fixed;
+    background-color: slateblue;
+  /*background: url("../img/backgrounds/wall_1.jpg") top repeat fixed;*/
   /*padding: 20px 0px;*/
 }
 body.page-container-boxed .page-container {

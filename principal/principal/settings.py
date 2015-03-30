@@ -37,22 +37,24 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_panel',
     'principal'
 )
 
 MIDDLEWARE_CLASSES = (
+    'debug_panel.middleware.DebugPanelMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 )
 
 
 ROOT_URLCONF = 'principal.urls'
 
-# WSGI_APPLICATION = 'Principal.wsgi.application'
+# WSGI_APPLICATION = 'principal.wsgi.application'
 
 
 # Database
@@ -89,3 +91,19 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp/',
+    },
+
+    # this cache backend will be used by django-debug-panel
+    'debug-panel': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp/debug-panel-cache',
+        'TIMEOUT': 300,
+        'OPTIONS': {
+            'MAX_ENTRIES': 200
+        }
+    }
+}
