@@ -284,10 +284,10 @@
         $scope.saveWithoutPayment = function () {
             $http({
                 method: 'POST',
-                url: "/campaign/save",
+                url: "/cabinet/campaign/save",
                 data: $.param({
                     campaign_id: generateId($scope.url),
-                    website_url: $scope.url,
+                    url: $scope.url,
                     keywords: _.map($scope.keywords, function (keyword) {
                         return keyword.word
                     }),
