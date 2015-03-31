@@ -1,16 +1,20 @@
 # coding=utf-8
+
 __author__ = 'Dmitry Panchev'
+import operator
+import struct
+import random
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from models import ClientProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from PIL import BmpImagePlugin, PngImagePlugin, Image
-import operator
-import struct
+from decimal import Decimal
 from django.http import JsonResponse
+from models import Campaign, CampaignKeywords, ClientProfile, Keywords, Billing
+
 
 
 def load_icon(file, index=None):
@@ -85,6 +89,10 @@ def load_icon(file, index=None):
     return image
 
 
+def get_random_price():
+    return Decimal(round(random.uniform(0.3, 5), 2))
+
+
 def main(request):
     return render(request, "front-end/index.html")
 
@@ -135,9 +143,40 @@ def campaign_save(request):
         regions = request.POST.getlist("regions[]", None)
         budget = request.POST.get("budget", None)
         if campaign_id and url and keywords and regions and budget:
-            return JsonResponse({u"success": u"РК Сохранена", })
+            client_profile = ClientProfile.objects.filter(user=request.user).first()
+            record_campaign, created = Campaign.objects.get_or_create(
+                client_profile=client_profile,
+                campaign_id=campaign_id,
+                campaign_host=url,
+                budget=budget
+            )
+            if created:
+                record_campaign.region = regions
+                medium_price = Decimal(0.0)
+                for keyword in keywords:
+                    record_keyword, keyword_created = Keywords.objects.get_or_create(
+                        keyword=keyword,
+                    )
+                    if keyword_created:
+                        record_keyword.new = True
+                        record_keyword.price = get_random_price()
+                        record_keyword.save()
+                        medium_price += record_keyword.price
+                    else:
+                        medium_price += record_keyword.price
+                    campaign_keyword, created = CampaignKeywords.objects.get_or_create(
+                        keyword=record_keyword,
+                        campaign=campaign
+                    )
+
+                record_campaign.volume = round(Decimal(budget) / medium_price)
+                record_campaign.save()
+                return JsonResponse({u"success": u"РК создана", })
+            else:
+                return JsonResponse({u"error": u"РК уже существует!", })
         else:
             return JsonResponse({u"error": u"Не все поля заполнены!", })
+
 
 @csrf_exempt
 def create_user(request):
