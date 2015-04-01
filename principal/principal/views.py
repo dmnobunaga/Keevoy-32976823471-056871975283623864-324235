@@ -4,6 +4,7 @@ __author__ = 'Dmitry Panchev'
 import operator
 import struct
 import random
+import json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
@@ -151,7 +152,7 @@ def campaign_save(request):
                 budget=budget
             )
             if created:
-                record_campaign.region = regions
+                record_campaign.region = json.dumps(regions)
                 medium_price = Decimal(0.0)
                 for keyword in keywords:
                     record_keyword, keyword_created = Keywords.objects.get_or_create(
@@ -166,17 +167,17 @@ def campaign_save(request):
                         medium_price += record_keyword.price
                     campaign_keyword, created = CampaignKeywords.objects.get_or_create(
                         keyword=record_keyword,
-                        campaign=campaign
+                        campaign=record_campaign
                     )
-
-                record_campaign.volume = round(Decimal(budget) / medium_price)
+                record_campaign.volume = round(Decimal(budget) / (medium_price / len(keywords)))
                 record_campaign.save()
                 return JsonResponse({u"success": u"РК создана", })
             else:
                 return JsonResponse({u"error": u"РК уже существует!", })
         else:
             return JsonResponse({u"error": u"Не все поля заполнены!", })
-
+    else:
+        return JsonResponse({u"error": u"Wrong method", })
 
 @csrf_exempt
 def create_user(request):
