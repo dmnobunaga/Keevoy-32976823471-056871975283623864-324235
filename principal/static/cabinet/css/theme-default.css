@@ -7387,3 +7387,6 @@ li.ext_zip {
   padding: 20px;
   color:#fff;
 }
+.tooltip-inner {
+    white-space:pre-wrap;
+}

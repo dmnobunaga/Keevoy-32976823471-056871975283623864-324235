@@ -246,6 +246,7 @@
     app.controller('registration', function ($scope, $http, webStorage) {
         $scope.keywords = [];
         $scope.clientsCount = 0;
+        $scope.clientsCount = 0;
         $scope.step = (webStorage.get('step') !== null) ? webStorage.get('step') : 1;
         $scope.url = "{{ url }}";
         $scope.getCampaignId = function(){
@@ -275,7 +276,7 @@
         };
         $scope.gotoStep3 = function () {
             $scope.step = 3;
-            webStorage.add('step', 3)
+            webStorage 
         };
         $scope.moveStep3 = function () {
             var username = Math.floor(Math.random() * (999999 - 111111 + 1)); //Random in
@@ -324,7 +325,7 @@
 
             });
             keywordPrice = keywordPrice / $scope.keywords.length;
-            $scope.clientsCount = (parseFloat($scope.budget.replace(' руб.', '')) / parseFloat(keywordPrice)).toFixed(2);
+            $scope.clientsCount = Math.round(parseFloat($scope.budget.replace(' руб.', '')) / parseFloat(keywordPrice));
         };
         $scope.removeCurrency = function (budget) {
             if (budget) {
