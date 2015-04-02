@@ -32,12 +32,17 @@ class Keywords(models.Model):
 class Campaign(models.Model):
     client_profile = models.ForeignKey(ClientProfile)
     created = models.DateTimeField(default=timezone.now())
+    status = models.CharField(max_length=1024, default=u'Не оплачена')
+    started = models.DateTimeField(null=True, blank=True)
+    ended = models.DateTimeField(null=True, blank=True)
     campaign_id = models.CharField(unique=True, max_length=1024)
     campaign_host = models.CharField(max_length=1024)
     volume = models.IntegerField(default=0)
     region = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})
     budget = models.DecimalField(max_digits=15, decimal_places=4, default=Decimal('0.00'))
+    specialist = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
+    paid_datetime = models.DateTimeField(null=True, blank=True)
 
 
 class CampaignKeywords(models.Model):
