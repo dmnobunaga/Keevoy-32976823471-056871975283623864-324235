@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_panel',
-    'principal'
+    'principal',
+    'yandex_money'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,6 +89,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_URL = '/static/'
+LOGGING_DIR = 'logs'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -111,3 +113,12 @@ CACHES = {
         }
     }
 }
+# Yandex Kassa
+YANDEX_MONEY_DEBUG = DEBUG
+YANDEX_MONEY_SCID = 21375
+YANDEX_MONEY_SHOP_ID = 30483
+YANDEX_MONEY_SHOP_PASSWORD = 'bYS8jmJhFVi6'
+YANDEX_MONEY_FAIL_URL = 'https://127.0.0.1:8000/fail-payment/'
+YANDEX_MONEY_SUCCESS_URL = 'https://127.0.0.1:8000/success-payment/'
+YANDEX_MONEY_MAIL_ADMINS_ON_PAYMENT_ERROR = True
+

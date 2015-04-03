@@ -1,3 +1,4 @@
+{% load jsonify %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,10 +84,10 @@
         <!-- END BREADCRUMB -->
 
         <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap" hidden="true" id="page">
+        <div class="page-content-wrap" hidden="true" id="page" ng-controller="campaigns">
 
             <!-- START WIDGETS -->
-            <div class="row" ng-controller="widgets">
+            <div class="row">
                 <div class="col-md-12">
                     <h2>Общая информация</h2>
                 </div>
@@ -146,7 +147,7 @@
                 </div>
             </div>
             <!-- END WIDGETS -->
-            <div class="row" ng-controller="campaigns">
+            <div class="row">
                 <div class="col-md-12">
                     <h2 ng-hide="campaigns.length == 0">Рекламные кампании</h2>
                 </div>
@@ -159,25 +160,18 @@
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                 <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
-                            <img src="{{campaign.website.icon}}"
-                                 alt="Google" class="panel-title-image">
-
-                            <h3 class="panel-title">{{campaign.website.title}}</h3>
+                            <h3 class="panel-title"><a target="_blank" href="{{ campaign.campaign_host }}">{{campaign.campaign_id}}</a></h3>
                         </div>
                         <div class="panel-body list-group">
                             <a href="#" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
                                     class="badge badge-{{campaign.status.class}}">{{ campaign.status.text }}</span></a>
                             <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
                                     class="badge badge-default">{{campaign.volume}}</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Дата начала <span
-                                    class="badge badge-danger">{{campaign.start}}</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-calendar"></span> Дата
-                                окончания <span
-                                        class="badge badge-danger">{{campaign.end}}</span></a>
+
                             <a ng-click="isCampaignOpen = !isCampaignOpen" href="#keywords?{{ campaign.id }}"
                                class="list-group-item">
                                 <span class="fa fa-search-plus"></span> Ключевые слова
-                                <span class="badge badge-info">{{ campaign.keywords_count }}</span>
+                                <span class="badge badge-info">{{ keywords_count(campaign) }}</span>
                             </a>
                             <table ng-show="isCampaignOpen" ng-model="campaign.keywords"
                                    class="table table-bordered"
@@ -188,18 +182,18 @@
                                         {{ keyword }}
                                     </td>
                                     <td>
+                                       <a target="_blank"
+                                                   href="https://www.google.com/trends/explore#q={{ keyword }}"><i
+                                                        class="fa fa-google"></i></a>
                                         <a target="_blank"
-                                           href="https://www.google.ru/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q={{ keyword }}"><i
-                                                class="fa fa-google"></i></a>
-                                        <a target="_blank"
-                                           href="https://yandex.ru/yandsearch?lr=213&text={{ keyword }}"><i
-                                                class="fa fa-yahoo"></i></a>
+                                           href="https://wordstat.yandex.ru/#!/?words={{ keyword }}">
+                                            <i class="fa fa-yahoo"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span
-                                    class="badge badge-danger">{{campaign.budget}} руб.</span></a>
+                                    class="badge ">{{campaign.budget}} руб.</span></a>
                         </div>
                     </div>
                 </div>
@@ -272,55 +266,92 @@
 <script type="text/javascript" src="../../static/cabinet/js/settings.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/actions.js"></script>
+{% endverbatim %}
 <script type="text/javascript">
     function declOfNum(number, titles) {
         cases = [2, 0, 1, 1, 1, 2];
         return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
+</script>
+<script type="text/javascript">
+    window.campaigns = [
+    {% for campaign in campaigns %}
+        {
+            "campaign_id": "{{ campaign.campaign_id }}",
+            "campaign_host": "{{ campaign.campaign_host }}",
+            "status": {
+                "text": "{{ campaign.status }}",
+                {% if campaign.status == 'Не оплачена' %}
+                    "class": "warning"
+                {% elif campaign.status == 'На модерации' %}
+                    "class": "info"
+                {% elif campaign.status == 'Закончена' %}
+                    "class": "default"
+                {% elif campaign.status == 'Запущена' %}
+                    "class": "success"
+                {% elif campaign.status == 'Остановлена' %}
+                    "class": "danger"
+                {% else %}
+                    "class": "danger"
+                {% endif %}
+            },
+            "volume": "{{ campaign.volume }} " + declOfNum({{ campaign.volume }}, ['посетитель', 'посетителя', 'посетителей']),
+            "keywords": [
+                {% for keyword in campaign.campaignkeywords_set.all %}
+                "{{ keyword.keyword.keyword }}",
+                {% endfor %}
+            ],
+            "budget": {{ campaign.budget }}
+        },
+    {% endfor %}
+    ];
+</script>
+<script type="text/javascript">
+
     var app = angular.module('app', ['webStorageModule']);
-    app.controller('widgets', function ($scope) {
+
+    app.controller('campaigns', function ($scope, $http, webStorage) {
+        $scope.summaryBudget = function(){
+            return _.reduce(window.campaigns, function(total,campaign){
+                return parseInt(total) + parseInt(campaign.budget)
+            },0);
+        };
+        $scope.summaryVolume = function(){
+            return _.reduce(window.campaigns, function(total,campaign){
+                return parseInt(total) + parseInt(campaign.volume)
+            },0);
+        };
+        $scope.summaryCount = function(){
+            return _.reduce(window.campaigns, function(total,campaign){
+                if (campaign.status.class == "success"){
+                    return total + 1;
+                }else{
+                    return total + 0;
+                }
+            },0);
+        };
         $scope.user = {
             "total": {
-                "count": 1 + " " + declOfNum(1, ['слово', 'слова', 'слов']),
-                "volume": 40000,
-                "budget": 4000
+                "count": $scope.summaryCount() + " " + declOfNum($scope.summaryCount(), ['слово', 'слова', 'слов']),
+                "volume": $scope.summaryVolume(),
+                "budget": $scope.summaryBudget()
             }
         }
-    });
-    app.controller('campaigns', function ($scope, $http, webStorage) {
+
+
         $scope.deleteKeyword = function ($index, keyword) {
             $scope.keywords.splice($index, 1);
             $scope.$emit('eventDeleted', keyword);
         };
-        var keyword = "Иcкать в интернете";
-        var keyword1 = "Гугл";
-        var campaign = {
-            "website": {
-                "icon": "http://zizaza.com/cache/big_thumb/iconset/581371/581377/PNG/128/flat_social_icons/google_plus_google_plus_icon_flat_icon_google_plus_png_flat_social_icons.png",
-                "title": "Google"
-            },
-            "status": {
-                "text": "Запущено",
-                "class": "success"
-            },
-            "volume": "100 000 " + declOfNum(100000, ['посетитель', 'посетителя', 'посетителей']),
-            "start": "29 марта 2015",
-            "end": "18 июня 2015",
-            "keywords": [
-                keyword,
-                keyword1
-            ],
-            "budget": "12 000"
+        $scope.keywords_count = function(campaign){
+            return campaign.keywords.length + " " + declOfNum(campaign.keywords.length, ['слово', 'слова', 'слов']);
         };
-        campaign.keywords_count = campaign.keywords.length + " " + declOfNum(campaign.keywords.length, ['слово', 'слова', 'слов']);
-
-        $scope.campaigns = [campaign];
+        $scope.campaigns = window.campaigns;
         console.log($scope.campaigns)
 
     });
     $("#page").removeAttr("hidden")
 </script>
-{% endverbatim %}
 {#                <div class="col-md-4">#}
 {#                    <div class="panel panel-default">#}
 {#                        <div class="panel-heading ui-draggable-handle">#}
