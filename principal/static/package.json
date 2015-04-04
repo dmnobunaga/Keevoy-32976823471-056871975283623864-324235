@@ -2,27 +2,30 @@
   "name": "Principal",
   "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Dmitry Panchev",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.8.1",
     "browser-sync": "*",
+    "gulp": "^3.8.11",
     "gulp-autoprefixer": "*",
-    "gulp-css-base64": "*",
-    "gulp-connect": "*",
     "gulp-concat": "*",
-    "gulp-order": "*",
-    "gulp-minify-css": "*",
+    "gulp-connect": "*",
+    "gulp-css-base64": "*",
+    "gulp-cssimport": "*",
     "gulp-imagemin": "*",
     "gulp-less": "*",
     "gulp-less-sourcemap": "*",
-    "gulp-cssimport": "*",
-    "gulp-sourcemaps": "*",
+    "gulp-minify-css": "*",
+    "gulp-order": "*",
     "gulp-rigger": "*",
+    "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
     "imagemin-pngquant": "*",
     "opn": "*",
     "rimraf": "*"
+  },
+  "dependencies": {
+    "lodash": "^3.6.0"
   }
 }

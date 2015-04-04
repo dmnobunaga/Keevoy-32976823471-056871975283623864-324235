@@ -847,16 +847,23 @@
                 </div>
             </div>
         </div>
-        <div class="page-content-wrap bg-img-5" id="join_us">
+
+
+        <div class="page-content-wrap" id="join_us">
             <div class="divider">
                 <div class="box"><span class="fa fa-angle-down"></span></div>
             </div>
             <div class="page-content-holder">
+
+                {#                <div style="position: fixed; top: 0; width: 100%; height: 100%; z-index: -1;">#}
+                {#                    <iframe style="position: absolute; width: 100%; height: 30%;left:0px;top:60%;" src="https://player.vimeo.com/video/123106236?api=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0&wmode=transparent&hd=1#t=14s" width="100%" height="100%" frameborder="0"></iframe>#}
+                {#                </div>#}
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8 input-group text-center join_us_div">
                     <input id="join_us_input"
                            type="url" value="Введите url вашего сайта"
                            class="lets-start form-control"/>
+
                     <div class="input-group-addon input-group-btn">
                         <button id="join_us_btn" class="btn btn-info">
                             Продолжить
@@ -870,7 +877,11 @@
             </div>
         </div>
     </div>
+    <!-- Warming Up -->
 
+    <!--Video Section-->
+
+    <!--Video Section Ends Here-->
     <!-- page footer -->
     <div class="page-footer">
 
@@ -964,6 +975,7 @@
                     <!-- ./contacts -->
                 </div>
                 <h2>Способы оплаты</h2>
+
                 <div style="background: white">
                     <img height="50" src="../../static/front-end/img/payment/Visa/rastr/Visa_2014_logo_200x65.png"/>
                     <img height="70" src="../../static/front-end/img/payment/MasterCard/png/320px-MasterCard_logo.png"/>
@@ -1014,8 +1026,15 @@
 
 <!-- page scripts -->
 <script type="text/javascript" src="../../static/front-end/build/js/all.js"></script>
-<!-- ./page scripts -->
+<script src="//pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $(".player").mb_YTPlayer();
+
+    });
+</script>
+<!-- ./page scripts -->
 </body>
 </html>
 

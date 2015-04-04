@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <!-- META SECTION -->
-    <title>Ключевой - фактор твоего успеха</title>
+    <title>Биллинг</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,9 +19,9 @@
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
 
-    {% include "cabinet/menu.html"  with tab=1 %}
+    {% include "cabinet/menu.html" with tab=2 %}
     <!-- END PAGE SIDEBAR -->
-{% verbatim %}
+    {% verbatim %}
 
     <!-- PAGE CONTENT -->
     <div class="page-content" ng-app="app">
@@ -50,130 +50,44 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="#">Ключевой</a></li>
-            <li class="active">Панель управления</li>
+            <li class="active">Биллинг</li>
         </ul>
         <!-- END BREADCRUMB -->
 
         <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap" hidden="true" id="page" ng-controller="campaigns">
+        <div class="page-content-wrap" hidden="true" id="page" ng-controller="payments">
+            <div class="panel panel-default">
 
-            <!-- START WIDGETS -->
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Общая информация</h2>
+                <div class="panel-heading">
+                    <h3 class="panel-title">История платежей</h3>
                 </div>
-                <div class="col-md-3">
 
-                    <!-- START WIDGET REGISTRED -->
-                    <div class="widget widget-default widget-item-icon">
-                        <div class="widget-item-left">
-                            <span class="fa fa-external-link"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">{{ user.total.count }}</div>
-                            <div class="widget-title">В работе</div>
-                            <div class="widget-subtitle">Рекламные кампании</div>
-                        </div>
+                <div class="panel-body panel-body-table">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-actions">
+                            <thead>
+                            <tr>
+                                <td>Рекламная кампания</td>
+                                <td>Сумма</td>
+                                <td>Дата</td>
+                                <td>Способ оплаты</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="order in orders">
+                                <td>{{ order.campaign_id }}</td>
+                                <td>{{ order.cost }}</td>
+                                <td>{{ order.date }}</td>
+                                <td>{{ order.method }}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+
+                            </tfoot>
+                        </table>
                     </div>
-                </div>
-                <div class="col-md-3">
 
-
-                    <div class="widget widget-default widget-item-icon">
-                        <div class="widget-item-left">
-                            <span class="fa fa-group"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">{{ user.total.volume }}</div>
-                            <div class="widget-title">Посетителей</div>
-                            <div class="widget-subtitle">Объём привлечения</div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET REGISTRED -->
-
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon">
-                        <div class="widget-item-left">
-                            <span class="fa fa-ruble"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">{{ user.total.budget }}</div>
-                            <div class="widget-title">Бюджет</div>
-                            <div class="widget-subtitle">Суммарный бюджет рекламных кампаний</div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET REGISTRED -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET CLOCK -->
-                    <div class="widget widget-default widget-padding-sm">
-                        <div class="widget-big-int plugin-clock">00:00</div>
-                        <div class="widget-subtitle plugin-date">Загрузка...</div>
-                    </div>
-                    <!-- END WIDGET CLOCK -->
-
-                </div>
-            </div>
-            <!-- END WIDGETS -->
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 ng-hide="campaigns.length == 0">Рекламные кампании</h2>
-                </div>
-
-                <div class="col-md-4" ng-repeat="campaign in campaigns">
-                    <div class="panel panel-default">
-                        <div class="panel-heading ui-draggable-handle">
-                            <ul class="panel-controls">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-up"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                            </ul>
-                            <h3 class="panel-title"><a target="_blank" href="{{ campaign.campaign_host }}">{{campaign.campaign_id}}</a></h3>
-                        </div>
-                        <div class="panel-body list-group">
-                            <a href="#" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
-                                    class="badge badge-{{campaign.status.class}}">{{ campaign.status.text }}</span></a>
-                            <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
-                                    class="badge badge-default">{{campaign.volume}}</span></a>
-
-                            <a ng-click="isCampaignOpen = !isCampaignOpen" href="#keywords?{{ campaign.id }}"
-                               class="list-group-item">
-                                <span class="fa fa-search-plus"></span> Ключевые слова
-                                <span class="badge badge-info">{{ keywords_count(campaign) }}</span>
-                            </a>
-                            <table ng-show="isCampaignOpen" ng-model="campaign.keywords"
-                                   class="table table-bordered"
-                                   id="keywords">
-                                <tbody>
-                                <tr ng-repeat="keyword in campaign.keywords">
-                                    <td>
-                                        {{ keyword }}
-                                    </td>
-                                    <td>
-                                       <a target="_blank"
-                                                   href="https://www.google.com/trends/explore#q={{ keyword }}"><i
-                                                        class="fa fa-google"></i></a>
-                                        <a target="_blank"
-                                           href="https://wordstat.yandex.ru/#!/?words={{ keyword }}">
-                                            <i class="fa fa-yahoo"></i></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="list-group-item"><span class="fa fa-ruble"></span> Бюджет <span
-                                    class="badge ">{{campaign.budget}} руб.</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="cl-md-8">
-                    <div class="cl-md-4 text-center">
-                        <a href="/cabinet/campaign/" class="btn btn-primary">Создать рекламную кампанию</a>
-                    </div>
                 </div>
             </div>
 
@@ -244,82 +158,26 @@
         return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
 </script>
+
 <script type="text/javascript">
-    window.campaigns = [
-    {% for campaign in campaigns %}
-        {
-            "campaign_id": "{{ campaign.campaign_id }}",
-            "campaign_host": "{{ campaign.campaign_host }}",
-            "status": {
-                "text": "{{ campaign.status }}",
-                {% if campaign.status == 'Не оплачена' %}
-                    "class": "warning"
-                {% elif campaign.status == 'На модерации' %}
-                    "class": "info"
-                {% elif campaign.status == 'Закончена' %}
-                    "class": "default"
-                {% elif campaign.status == 'Запущена' %}
-                    "class": "success"
-                {% elif campaign.status == 'Остановлена' %}
-                    "class": "danger"
-                {% else %}
-                    "class": "danger"
-                {% endif %}
+    window.orders = [
+        {% for order in orders %}
+            {
+                "campaign_id": "{{ order.campaign.campaign_id }}",
+                "cost": "{{ order.campaign.budget }}",
+                "date": "{{ order.campaign.paid_datetime }}",
+                "method": "{{ order.payment.payment_type }}"
+
             },
-            "volume": "{{ campaign.volume }} " + declOfNum({{ campaign.volume }}, ['посетитель', 'посетителя', 'посетителей']),
-            "keywords": [
-                {% for keyword in campaign.campaignkeywords_set.all %}
-                "{{ keyword.keyword.keyword }}",
-                {% endfor %}
-            ],
-            "budget": {{ campaign.budget }}
-        },
-    {% endfor %}
+        {% endfor %}
     ];
 </script>
 <script type="text/javascript">
 
     var app = angular.module('app', ['webStorageModule']);
 
-    app.controller('campaigns', function ($scope, $http, webStorage) {
-        $scope.summaryBudget = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
-                return parseInt(total) + parseInt(campaign.budget)
-            },0);
-        };
-        $scope.summaryVolume = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
-                return parseInt(total) + parseInt(campaign.volume)
-            },0);
-        };
-        $scope.summaryCount = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
-                if (campaign.status.class == "success"){
-                    return total + 1;
-                }else{
-                    return total + 0;
-                }
-            },0);
-        };
-        $scope.user = {
-            "total": {
-                "count": $scope.summaryCount() + " " + declOfNum($scope.summaryCount(), ['слово', 'слова', 'слов']),
-                "volume": $scope.summaryVolume(),
-                "budget": $scope.summaryBudget()
-            }
-        }
-
-
-        $scope.deleteKeyword = function ($index, keyword) {
-            $scope.keywords.splice($index, 1);
-            $scope.$emit('eventDeleted', keyword);
-        };
-        $scope.keywords_count = function(campaign){
-            return campaign.keywords.length + " " + declOfNum(campaign.keywords.length, ['слово', 'слова', 'слов']);
-        };
-        $scope.campaigns = window.campaigns;
-        console.log($scope.campaigns)
-
+    app.controller('payments', function ($scope) {
+        $scope.payments = window.payments;
     });
     $("#page").removeAttr("hidden")
 </script>

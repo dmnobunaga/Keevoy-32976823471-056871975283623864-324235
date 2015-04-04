@@ -13,6 +13,7 @@ class ClientProfile(models.Model):
     balance = models.DecimalField(max_digits=15, decimal_places=4, default=Decimal('0.00'))
 
 
+
 class Billing(models.Model):
     client_profile = models.ForeignKey(ClientProfile)
     created = models.DateTimeField(default=timezone.now())
@@ -49,3 +50,8 @@ class CampaignKeywords(models.Model):
     campaign = models.ForeignKey(Campaign)
     keyword = models.ForeignKey(Keywords)
 
+
+class Order(models.Model):
+    client_profile = models.ForeignKey(ClientProfile)
+    campaign = models.ForeignKey(Campaign)
+    payment = models.ForeignKey('yandex_money.Payment', verbose_name='Платеж')

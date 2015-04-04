@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- META SECTION -->
-    <title>Ключевой - фактор твоего успеха</title>
+    <title>Новая кампания</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -15,44 +15,12 @@
     <link rel="stylesheet" type="text/css" href="../../static/bower_components/nvd3/nv.d3.css">
     <!-- EOF CSS INCLUDE -->
 </head>
-{% verbatim %}
 <body class="page-container-boxed">
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
-
-    <!-- START PAGE SIDEBAR -->
-    <div class="page-sidebar">
-        <!-- START X-NAVIGATION -->
-        <ul class="x-navigation">
-            <li class="xn-logo">
-                <a href="/">Ключевой</a>
-                <a href="#" class="x-navigation-control"></a>
-            </li>
-            <li class="xn-title">Меню</li>
-            <li class="active">
-                <a href="/cabinet/"><span class="fa fa-desktop"></span> <span
-                        class="xn-text">Панель управления</span></a>
-            </li>
-            <li>
-                <a href="/cabinet/"><span class="fa fa-money"></span> <span
-                        class="xn-text">Биллинг</span></a>
-            </li>
-            <li>
-                <a href="/cabinet/"><span class="fa fa-h-square"></span> <span
-                        class="xn-text">Поддержка</span></a>
-            </li>
-            <li>
-                <a href="/cabinet/"><span class="fa fa-question-circle"></span> <span
-                        class="xn-text">Частые вопросы</span></a>
-            </li>
-
-
-        </ul>
-        <!-- END X-NAVIGATION -->
-    </div>
-    <!-- END PAGE SIDEBAR -->
-
+    {% include "cabinet/menu.html" %}
     <!-- PAGE CONTENT -->
+    {% verbatim %}
     <div class="page-content" ng-app="app">
 
         <!-- START X-NAVIGATION VERTICAL -->
@@ -287,7 +255,7 @@
     </div>
 
     <div class="row">
-        <div class="text-center copyright">Ключевой © Copyright 2015</div>
+        <div class="text-center copyright">Ключевой © 2015</div>
     </div>
     <!-- END PAGE CONTENT -->
 </div>
@@ -472,7 +440,8 @@
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (response) {
                 console.log(response);
-                document.location.href = "/cabinet/"
+                webStorage.clear();
+                document.location.href = "/cabinet/";
             });
         };
         $scope.focusUrl = function (url) {
