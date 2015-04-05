@@ -298,7 +298,7 @@
                         "{{ keyword.keyword.keyword }}",
                     {% endfor %}
                 ],
-                "budget": {{ campaign.budget }}
+                "budget": parseFloat({{ campaign.budget }})
             },
         {% endfor %}
     ];

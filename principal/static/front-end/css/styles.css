@@ -1791,7 +1791,7 @@ blockquote p {
 }
 input.lets-start {
   height: 55px;
-  font-size: 25px;
+  font-size: 25vw;
 }
 .start-bg {
   background: url("../img/backgrounds/bg-6.jpg") no-repeat center center fixed;
@@ -1814,13 +1814,13 @@ input.lets-start {
   font-weight: 300;
   line-height: 100%;
   color: #ffffff;
-  font-size: 44px;
+  font-size: calc(55px);
 }
 #sub_header {
   font-weight: 400;
   color: #ffffff;
   line-height: 48px;
-  font-size: 32px;
+  font-size: calc(25px);
 }
 .col-lg-6.start {
   background-color: #9992c0;
@@ -1904,7 +1904,41 @@ div.table-padding {
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles */
+  h1 {
+    font-size: 45px;
+  }
+  .start-bg {
+    background: url("../img/backgrounds/bg-6.jpg") no-repeat center center fixed;
+    background-size: 280%;
+  }
+  #main_header {
+    margin-top: 10px;
+    font-weight: 300;
+    line-height: 100%;
+    color: #ffffff;
+    font-size: calc(21px);
+  }
+  #sub_header {
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 120%;
+    font-size: calc(17.5px);
+  }
+  input.lets-start {
+    height: 25px;
+    font-size: 20px;
+  }
+  .btn-start {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .page-container .page-content .page-content-wrap .page-content-holder {
+    width: 100%;
+    padding: 0px 10px 18px;
+  }
 }
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
@@ -1916,15 +1950,88 @@ div.table-padding {
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles */
+  .promo {
+    color: #ffffff;
+  }
+  .promo.start {
+    font-size: 64px;
+    color: #ffffff;
+  }
+  .promo-box {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 24px;
+    letter-spacing: 1px;
+  }
+  .promo-box .white {
+    color: #0f070f;
+    font-weight: 300;
+    width: 820px;
+    background-color: rgba(255, 255, 255, 0.91);
+    padding: 25px;
+  }
+  .promo-box .promo-box-text {
+    font-size: 22px;
+  }
 }
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  /* Styles */
+  .promo-box {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 15px;
+    letter-spacing: 1px;
+  }
+  .promo-box .white {
+    color: #0f070f;
+    font-weight: 300;
+    width: 820px;
+    background-color: rgba(255, 255, 255, 0.91);
+    padding: 15px;
+  }
+  .promo-box .promo-box-text {
+    font-size: 15px;
+  }
 }
 /* iPads (portrait) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
+  h1 {
+    font-size: 45px;
+  }
+  .start-bg {
+    background: url("../img/backgrounds/bg-6.jpg") no-repeat center center fixed;
+    background-size: 150%;
+  }
+  #main_header {
+    margin-top: 10px;
+    font-weight: 300;
+    line-height: 100%;
+    color: #ffffff;
+    font-size: calc(42px);
+  }
+  #sub_header {
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 120%;
+    font-size: calc(35px);
+  }
+  input.lets-start {
+    height: 25px;
+    font-size: 20px;
+  }
+  .btn-start {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .page-container .page-content .page-content-wrap .page-content-holder {
+    width: 100%;
+    padding: 20px 10px 18px;
+  }
 }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
@@ -1932,9 +2039,5 @@ div.table-padding {
 }
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {
-  /* Styles */
-}
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   /* Styles */
 }
