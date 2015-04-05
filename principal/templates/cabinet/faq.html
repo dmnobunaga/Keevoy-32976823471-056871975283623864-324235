@@ -1,0 +1,139 @@
+{% load jsonify %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Биллинг</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" href="../../static/cabinet/favicon.ico" type="image/x-icon"/>
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="../../static/cabinet/css/theme-default.css"/>
+    <!-- EOF CSS INCLUDE -->
+</head>
+<body class="page-container-boxed">
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+
+    {% include "cabinet/menu.html" with tab=4 %}
+    <!-- END PAGE SIDEBAR -->
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <!-- END TOGGLE NAVIGATION -->
+            <!-- SEARCH -->
+            <!-- END SEARCH -->
+            <!-- SIGN OUT -->
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-wrench"></span></a>
+            </li>
+            <!-- END SIGN OUT -->
+
+        </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+
+        <!-- START BREADCRUMB -->
+        <ul class="breadcrumb">
+            <li><a href="/cabinet/">Ключевой</a></li>
+            <li class="active">Часто задаваемые вопросы</li>
+        </ul>
+        <!-- END BREADCRUMB -->
+
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="push-down-0">Часто задаваемые вопросы</h3>
+                </div>
+                <div class="panel-body faq">
+
+                    <div class="faq-item">
+                        <div class="faq-title"><span class="fa fa-angle-down"></span>Как влияет продвижение сайта на бизнес?
+                        </div>
+                        <div class="faq-text">
+                            <h5>Как влияет продвижение сайта на бизнес?</h5>
+
+                            <p>Продвижение сайта в поисковых системах является эффективным видом рекламы, сравнимым по
+                                отдаче с рекламой на телевидении или, но при этом более дешевым.</p>
+
+                            <p>При проведении рекламной кампании мы проводим исследования и анкетируем клиентов.
+                                Собранные нами данные подтверждают эффективность интернет-рекламы. Многие наши клиенты
+                                увеличили прибыль в 2—4 раза. Количество звонков от интересующихся людей увеличилось в
+                                десятки раз, а число посетителей сайта в сотни раз.</p>
+
+                            <p>Продвижение в поисковых системах положительно влияет на узнаваемость торговой марки и
+                                логотипа вашей компании, что увеличивает эффективность других видов рекламы.</p>
+
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-title"><span class="fa fa-angle-down"></span>Можно ли как-то повлиять на скорость продвижения сайта? Нам срочно нужны клиенты!
+                        </div>
+                        <div class="faq-text">
+
+                            <p>К сожалению, нельзя. Специалисты по продвижению сайтов не могут управлять поисковыми роботами и поисковыми системами напрямую, им доступны лишь косвенные методы увеличения веса сайта в поисковых машинах. Однако можно привлечь клиентов и другими способами, — например, параллельно с продвижением сайта можно использовать контекстную или баннерную рекламу.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END PAGE CONTENT WRAPPER -->
+
+
+    </div>
+    <div class="row">
+        <div class="text-center copyright">Ключевой © 2015</div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Выйти ?</div>
+            <div class="mb-content">
+                <p>Вы уверены что хотите выйти?</p>
+
+                <p></p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a href="/" class="btn btn-success btn-lg">Да</a>
+                    <button class="btn btn-default btn-lg mb-control-close">Нет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/faq.js"></script>
+</body>
+</html>
+
+
+
+
+
+

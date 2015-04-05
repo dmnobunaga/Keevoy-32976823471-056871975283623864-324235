@@ -14,8 +14,10 @@ from django.shortcuts import render, redirect, render_to_response
 from PIL import BmpImagePlugin, PngImagePlugin, Image
 from decimal import Decimal
 from django.http import JsonResponse
-from models import Campaign, CampaignKeywords, ClientProfile, Keywords, Billing
-
+from models import Campaign, CampaignKeywords, ClientProfile, Keywords, Billing, Order
+from yandex_money.forms import PaymentForm
+from yandex_money.models import Payment
+from django.contrib import messages
 
 
 def get_random_price():
@@ -26,11 +28,43 @@ def main(request):
     return render(request, "front-end/index.html")
 
 
+def mobile(request):
+    return render(request, "front-end/mobile.html")
+
+
 @login_required(login_url='/login')
 def cabinet(request):
     client_profile = ClientProfile.objects.filter(user=request.user).first()
     campaigns = Campaign.objects.filter(client_profile=client_profile).all()
     return render(request, "cabinet/index.html", locals())
+
+
+@login_required(login_url='/login')
+def billing(request):
+    client_profile = ClientProfile.objects.filter(user=request.user).first()
+    orders = Order.objects.filter(client_profile=client_profile).all()
+    return render(request, "cabinet/billing.html", locals())
+
+
+@login_required(login_url='/login')
+def payment_yandex(request):
+    campaign_id = request.GET.get('campaign', None)
+    if not campaign_id:
+        messages.add_message(request, messages.ERROR, u'Выберите рекламную кампанию')
+        return redirect(cabinet)
+
+    client_profile = ClientProfile.objects.filter(user=request.user).first()
+    campaign = Campaign.objects.filter(client_profile=client_profile, campaign_id=campaign_id).first()
+    if campaign:
+        return render(request, "cabinet/yandex_payment_form.html", locals())
+    else:
+        messages.add_message(request, messages.ERROR, u'Рекламная кампания не существует')
+        return redirect(cabinet)
+
+
+@login_required(login_url='/login')
+def faq(request):
+    return render(request, "cabinet/faq.html")
 
 
 @login_required(login_url='/login')
@@ -50,11 +84,17 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect("cabinet")
+                next = request.GET.get('next', None)
+                if next:
+                    return redirect(next)
+                else:
+                    return redirect(cabinet)
             else:
-                return HttpResponse(u"Error")
+                messages.add_message(request, messages.ERROR, u'Проверьте логин и пароль')
+                return redirect(user_login)
         else:
-            return HttpResponse(u"User not exist")
+            messages.add_message(request, messages.ERROR, u'Пользователь не существует')
+            return redirect(user_login)
     return render(request, u"cabinet/login.html")
 
 
@@ -114,6 +154,7 @@ def campaign_save(request):
             return JsonResponse({u"error": u"Не все поля заполнены!", })
     else:
         return JsonResponse({u"error": u"Wrong method", })
+
 
 @csrf_exempt
 def create_user(request):

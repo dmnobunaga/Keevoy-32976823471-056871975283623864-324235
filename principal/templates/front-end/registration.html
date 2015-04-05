@@ -14,7 +14,6 @@
     <script src="../../static/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-{% verbatim %}
 <!-- page container -->
 <div class="page-container">
 
@@ -38,26 +37,7 @@
             <!-- ./nav mobile bars -->
 
             <!-- navigation -->
-            <ul class="navigation">
-                <li>
-                    <a href="#advantages">Преимущества</a>
-                </li>
-                <li>
-                    <a href="#">Услуги</a>
-                </li>
-                <li>
-                    <a href="#tech">Технологии</a>
-                </li>
-                <li>
-                    <a href="#">База знаний</a>
-                </li>
-                <li>
-                    <a href="#">Контакты</a>
-                </li>
-                <li id="cabinet">
-                    <a href="/login"><strong>Личный кабинет</strong></a>
-                </li>
-            </ul>
+            {% include "front-end/menu.html" %}
             <!-- ./navigation -->
 
 
@@ -66,7 +46,7 @@
 
     </div>
     <!-- ./page header -->
-
+    {% verbatim %}
     <!-- page content -->
     <div class="page-content" ng-app="app">
         <div class="page-content-wrap start-bg">

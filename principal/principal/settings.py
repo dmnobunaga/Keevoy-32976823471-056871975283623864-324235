@@ -24,6 +24,9 @@ SECRET_KEY = 'k8aa%lc!^2ajsc#r*u-wgeue3b*#_h64q18tn9-7^usm+rytpz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
+
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
@@ -34,14 +37,17 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
+    'django.contrib.humanize',  # Required for elapsed time formatting
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_panel',
     'principal',
-    'yandex_money'
+    'yandex_money',
+    'bootstrapform',
+    'markdown_deux',
+    'helpdesk'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,9 +81,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -85,7 +91,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_URL = '/static/'
@@ -97,6 +103,9 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',

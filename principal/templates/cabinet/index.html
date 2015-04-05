@@ -1,4 +1,4 @@
-{% load jsonify %}
+{% load jsonify common  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,6 @@
 
     {% include "cabinet/menu.html"  with tab=1 %}
     <!-- END PAGE SIDEBAR -->
-{% verbatim %}
 
     <!-- PAGE CONTENT -->
     <div class="page-content" ng-app="app">
@@ -39,17 +38,18 @@
             <li class="xn-icon-button pull-right">
                 <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
             </li>
-            <li class="xn-icon-button pull-right">
-                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-wrench"></span></a>
-            </li>
+{#            <li class="xn-icon-button pull-right">#}
+{#                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-wrench"></span></a>#}
+{#            </li>#}
             <!-- END SIGN OUT -->
 
         </ul>
         <!-- END X-NAVIGATION VERTICAL -->
+        {% verbatim %}
 
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
-            <li><a href="#">Ключевой</a></li>
+            <li><a href="/cabinet/">Ключевой</a></li>
             <li class="active">Панель управления</li>
         </ul>
         <!-- END BREADCRUMB -->
@@ -131,10 +131,13 @@
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                 <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
-                            <h3 class="panel-title"><a target="_blank" href="{{ campaign.campaign_host }}">{{campaign.campaign_id}}</a></h3>
+                            <h3 class="panel-title"><a target="_blank" href="{{ campaign.campaign_host }}">{{campaign.campaign_id}}</a>
+                            </h3>
                         </div>
                         <div class="panel-body list-group">
-                            <a href="#" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
+                            <a ng-hide="campaign.status.class == 'warning'" href="#" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
+                                    class="badge badge-{{campaign.status.class}}">{{ campaign.status.text }}</span></a>
+                            <a ng-show="campaign.status.class == 'warning'" href="/cabinet/payment?campaign={{campaign.campaign_id}}" class="list-group-item"><span class="fa fa-check-circle"></span> Статус <span
                                     class="badge badge-{{campaign.status.class}}">{{ campaign.status.text }}</span></a>
                             <a href="#" class="list-group-item"><span class="fa fa-group"></span> Объём <span
                                     class="badge badge-default">{{campaign.volume}}</span></a>
@@ -153,9 +156,9 @@
                                         {{ keyword }}
                                     </td>
                                     <td>
-                                       <a target="_blank"
-                                                   href="https://www.google.com/trends/explore#q={{ keyword }}"><i
-                                                        class="fa fa-google"></i></a>
+                                        <a target="_blank"
+                                           href="https://www.google.com/trends/explore#q={{ keyword }}"><i
+                                                class="fa fa-google"></i></a>
                                         <a target="_blank"
                                            href="https://wordstat.yandex.ru/#!/?words={{ keyword }}">
                                             <i class="fa fa-yahoo"></i></a>
@@ -201,13 +204,37 @@
             </div>
             <div class="mb-footer">
                 <div class="pull-right">
-                    <a href="/" class="btn btn-success btn-lg">Да</a>
+                    <a href="/logout" class="btn btn-success btn-lg">Да</a>
                     <button class="btn btn-default btn-lg mb-control-close">Нет</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endverbatim %}
+
+<!-- ERROR BOX-->
+
+{% if messages %}
+<div class="message-box animated fadeIn open" data-sound="alert" id="error">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-warning"></span>Ошибка</div>
+            <div class="mb-content">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <button class="btn btn-default btn-lg mb-control-close">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript"></script>
+</div>
+{% endif %}
 
 <!-- START SCRIPTS -->
 <!-- START PLUGINS -->
@@ -237,7 +264,6 @@
 <script type="text/javascript" src="../../static/cabinet/js/settings.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/plugins.js"></script>
 <script type="text/javascript" src="../../static/cabinet/js/actions.js"></script>
-{% endverbatim %}
 <script type="text/javascript">
     function declOfNum(number, titles) {
         cases = [2, 0, 1, 1, 1, 2];
@@ -246,35 +272,35 @@
 </script>
 <script type="text/javascript">
     window.campaigns = [
-    {% for campaign in campaigns %}
-        {
-            "campaign_id": "{{ campaign.campaign_id }}",
-            "campaign_host": "{{ campaign.campaign_host }}",
-            "status": {
-                "text": "{{ campaign.status }}",
-                {% if campaign.status == 'Не оплачена' %}
-                    "class": "warning"
-                {% elif campaign.status == 'На модерации' %}
-                    "class": "info"
-                {% elif campaign.status == 'Закончена' %}
-                    "class": "default"
-                {% elif campaign.status == 'Запущена' %}
-                    "class": "success"
-                {% elif campaign.status == 'Остановлена' %}
-                    "class": "danger"
-                {% else %}
-                    "class": "danger"
-                {% endif %}
+        {% for campaign in campaigns %}
+            {
+                "campaign_id": "{{ campaign.campaign_id }}",
+                "campaign_host": "{{ campaign.campaign_host }}",
+                "status": {
+                    "text": "{{ campaign.status }}",
+                    {% if campaign.status == 'Не оплачена' %}
+                        "class": "warning"
+                    {% elif campaign.status == 'На модерации' %}
+                        "class": "info"
+                    {% elif campaign.status == 'Закончена' %}
+                        "class": "default"
+                    {% elif campaign.status == 'Запущена' %}
+                        "class": "success"
+                    {% elif campaign.status == 'Остановлена' %}
+                        "class": "danger"
+                    {% else %}
+                        "class": "danger"
+                    {% endif %}
+                },
+                "volume": "{{ campaign.volume }} " + declOfNum({{ campaign.volume }}, ['посетитель', 'посетителя', 'посетителей']),
+                "keywords": [
+                    {% for keyword in campaign.campaignkeywords_set.all %}
+                        "{{ keyword.keyword.keyword }}",
+                    {% endfor %}
+                ],
+                "budget": {{ campaign.budget }}
             },
-            "volume": "{{ campaign.volume }} " + declOfNum({{ campaign.volume }}, ['посетитель', 'посетителя', 'посетителей']),
-            "keywords": [
-                {% for keyword in campaign.campaignkeywords_set.all %}
-                "{{ keyword.keyword.keyword }}",
-                {% endfor %}
-            ],
-            "budget": {{ campaign.budget }}
-        },
-    {% endfor %}
+        {% endfor %}
     ];
 </script>
 <script type="text/javascript">
@@ -282,24 +308,24 @@
     var app = angular.module('app', ['webStorageModule']);
 
     app.controller('campaigns', function ($scope, $http, webStorage) {
-        $scope.summaryBudget = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
+        $scope.summaryBudget = function () {
+            return _.reduce(window.campaigns, function (total, campaign) {
                 return parseInt(total) + parseInt(campaign.budget)
-            },0);
+            }, 0);
         };
-        $scope.summaryVolume = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
+        $scope.summaryVolume = function () {
+            return _.reduce(window.campaigns, function (total, campaign) {
                 return parseInt(total) + parseInt(campaign.volume)
-            },0);
+            }, 0);
         };
-        $scope.summaryCount = function(){
-            return _.reduce(window.campaigns, function(total,campaign){
-                if (campaign.status.class == "success"){
+        $scope.summaryCount = function () {
+            return _.reduce(window.campaigns, function (total, campaign) {
+                if (campaign.status.class == "success") {
                     return total + 1;
-                }else{
+                } else {
                     return total + 0;
                 }
-            },0);
+            }, 0);
         };
         $scope.user = {
             "total": {
@@ -307,14 +333,14 @@
                 "volume": $scope.summaryVolume(),
                 "budget": $scope.summaryBudget()
             }
-        }
+        };
 
 
         $scope.deleteKeyword = function ($index, keyword) {
             $scope.keywords.splice($index, 1);
             $scope.$emit('eventDeleted', keyword);
         };
-        $scope.keywords_count = function(campaign){
+        $scope.keywords_count = function (campaign) {
             return campaign.keywords.length + " " + declOfNum(campaign.keywords.length, ['слово', 'слова', 'слов']);
         };
         $scope.campaigns = window.campaigns;

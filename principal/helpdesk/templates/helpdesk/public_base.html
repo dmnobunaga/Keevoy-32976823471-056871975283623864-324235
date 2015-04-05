@@ -1,0 +1,29 @@
+{% load i18n %}{% load url from future %}
+{% load load_helpdesk_settings %}
+{% with request|load_helpdesk_settings as helpdesk_settings %}
+<html>
+<head>
+<title>{% block helpdesk_title %}{% trans "Helpdesk" %}{% endblock %}</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" id="theme" href="../../../static/cabinet/css/theme-default.css"/>
+
+{% block helpdesk_head %}{% endblock %}
+</head>
+<body id="helpdesk-body">
+<div id='container' class="container">
+    <div id='header' class="row">
+        {% include "helpdesk/navigation.html" %}
+    </div>
+    <div id='body' class="row" style="margin-top: 50px">
+        <span><img src="/static/front-end/build/img/logo.png"/>
+        <h1>Центр Поддержки Клиентов</h1></span>
+        {% block helpdesk_body %}{% endblock %}
+    </div>
+    <div id='footer' class="row">
+        <p>{% include "helpdesk/attribution.html" %}</p>
+    </div>
+</div>{% include "helpdesk/debug.html" %}
+</body>
+</html>
+{% endwith %}

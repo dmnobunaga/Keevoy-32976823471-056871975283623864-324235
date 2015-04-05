@@ -20,7 +20,6 @@
 <div class="page-container">
     {% include "cabinet/menu.html" %}
     <!-- PAGE CONTENT -->
-    {% verbatim %}
     <div class="page-content" ng-app="app">
 
         <!-- START X-NAVIGATION VERTICAL -->
@@ -51,7 +50,7 @@
             <li class="active"><a href="/cabinet/campaign/">Новая рекламная кампания</a></li>
         </ul>
         <!-- END BREADCRUMB -->
-
+        {% verbatim %}
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap" ng-controller="campaign" hidden="true" id="page">
             <div class="row">
@@ -442,6 +441,25 @@
                 console.log(response);
                 webStorage.clear();
                 document.location.href = "/cabinet/";
+            });
+        };
+        $scope.saveWithPayment = function () {
+            $http({
+                method: 'POST',
+                url: "/cabinet/campaign/save",
+                data: $.param({
+                    campaign_id: $scope.campaign_id,
+                    url: $scope.url,
+                    keywords: $scope.keywords,
+                    regions: $scope.regions,
+                    budget: $scope.budget.replace(' руб.', ''),
+                    specialist: $scope.specialist
+                }),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function (response) {
+                console.log(response);
+                webStorage.clear();
+                document.location.href = "/cabinet/payment?campaign=" + $scope.campaign_id;
             });
         };
         $scope.focusUrl = function (url) {

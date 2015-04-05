@@ -1,0 +1,37 @@
+<!-- START PAGE SIDEBAR -->
+<div class="page-sidebar">
+    <!-- START X-NAVIGATION -->
+    <ul class="x-navigation">
+        <li class="xn-logo">
+            <a href="/">Ключевой</a>
+            <a href="#" class="x-navigation-control"></a>
+        </li>
+        <li class="xn-title">Меню</li>
+        <li {% if tab == 1 %}
+            class="active"
+            {% endif %}>
+            <a href="/cabinet/"><span class="fa fa-desktop"></span> <span
+                    class="xn-text">Панель управления</span></a>
+        </li>
+        <li {% if tab == 2 %}
+            class="active"
+            {% endif %}>
+            <a href="/cabinet/billing"><span class="fa fa-money"></span> <span
+                    class="xn-text">Биллинг</span></a>
+        </li>
+        <li {% if tab == 3 %}
+            class="active"
+            {% endif %}>
+            <a href="/cabinet/support/"><span class="fa fa-h-square"></span> <span
+                    class="xn-text">Поддержка</span></a>
+        </li>
+        <li {% if tab == 4 %}
+            class="active"
+            {% endif %}>
+            <a href="/cabinet/faq"><span class="fa fa-question-circle"></span> <span
+                    class="xn-text">Частые вопросы</span></a>
+        </li>
+
+    </ul>
+    <!-- END X-NAVIGATION -->
+</div>

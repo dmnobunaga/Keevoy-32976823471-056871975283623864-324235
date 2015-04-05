@@ -33,28 +33,7 @@
             </div>
             <!-- ./nav mobile bars -->
 
-            <!-- navigation -->
-            <ul class="navigation">
-                <li>
-                    <a href="#advantages">Преимущества</a>
-                </li>
-                <li>
-                    <a href="#">Услуги</a>
-                </li>
-                <li>
-                    <a href="#tech">Технологии</a>
-                </li>
-                <li>
-                    <a href="#">База знаний</a>
-                </li>
-                <li>
-                    <a href="#">Контакты</a>
-                </li>
-                <li id="cabinet">
-                    <a href="/login"><strong>Личный кабинет</strong></a>
-                </li>
-            </ul>
-            <!-- ./navigation -->
+            {% include "front-end/menu.html" %}
 
 
         </div>
@@ -224,7 +203,7 @@
         <!-- ./page content wrapper -->
         <!-- ./page content -->
 
-        <div class="page-content">
+        <div hidden="true" class="page-content preload" >
             <div id="tech" class="banner-container">
                 <div class="banner">
 
@@ -483,14 +462,15 @@
                                 <div class="promo-box">
                                     <div class="white">
                                         <div class="block-heading-text">
-                                            <span style="font-size:26px">Продвижение через  тематические веб сайты и&nbsp; блоги</span>
+                                            <span style="font-size:26px">Продвижение через тематические веб сайты и блоги</span>
                                         </div>
 
                                         <div class="block-heading-text" style="text-align: justify;">&nbsp;</div>
 
                                         <div class="block-heading-text" style="text-align: justify;">
-                                            <span style="font-size:20px">Механиз продвижения через тематические сайты весьма и весьма эффективен потому зачастую используется крупными seo компаниями.&nbsp;</span>
-                                    <span style="font-size:20px">&nbsp;
+                                            <span style="font-size:20px">Механиз продвижения через тематические сайты весьма и весьма эффективен потому зачастую <br>
+                                                используется крупными seo компаниями.</span>
+                                    <span style="font-size:20px">
                                         <p><a style="color:white;font-size: 20px;padding: 8px"
                                               class="btn btn-primary btn-lg" href="#howto">Как это работает?</a></p>
                                     </span>
@@ -502,7 +482,7 @@
 
                                         <div class="block-heading-text" style="text-align: justify;">
                                     <span style="font-size:18px">
-                                        Всю рутинную&nbsp;работу по поиску релевантного материала, качественной площадки для публикации, подбору корректного <a
+                                        Всю рутинную&nbsp;работу по поиску релевантного материала, качественной площадки для публикации, подбору корректного <br><a
                                             href="#ancor">анкора</a>&nbsp;наши роботы берут на себя.
                                     </span>
                                         </div>
@@ -705,7 +685,7 @@
                                             пользователей участников различных<br>
                                             партнёрских программ наших партнёров с<br>
                                             помощью нашей специальной<br>
-                                            технологиитехнология<br>
+                                            технологии<br>
                                             Insider SMM.<br>
                                         </div>
                                     </div>
@@ -849,15 +829,18 @@
         </div>
 
 
-        <div class="page-content-wrap" id="join_us">
+        <div class="page-content-wrap video-section preload" id="join_us">
             <div class="divider">
                 <div class="box"><span class="fa fa-angle-down"></span></div>
             </div>
             <div class="page-content-holder">
 
-                {#                <div style="position: fixed; top: 0; width: 100%; height: 100%; z-index: -1;">#}
-                {#                    <iframe style="position: absolute; width: 100%; height: 30%;left:0px;top:60%;" src="https://player.vimeo.com/video/123106236?api=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0&wmode=transparent&hd=1#t=14s" width="100%" height="100%" frameborder="0"></iframe>#}
-                {#                </div>#}
+
+                <div class="pattern-overlay">
+                    <a id="bgndVideo" class="player"
+                       data-property="{videoURL:'http://www.youtube.com/watch?v=Eu-3-fQB7Iw',containment:'.video-section', quality:'large', showControls:false,stopMovieOnBlur:false, showYTLogo:false, autoPlay:true, mute:true, opacity:1}"></a>
+                </div>
+
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8 input-group text-center join_us_div">
                     <input id="join_us_input"
@@ -908,8 +891,7 @@
                         <h3>Быстрые ссылки</h3>
 
                         <div class="list-links">
-                            <a href="#">Преимущества</a>
-                            <a href="#">Услуги</a>
+                            <a href="#advantages">Преимущества</a>
                             <a href="#tech">Технологии</a>
                             <a href="#">База знаний</a>
                         </div>
@@ -918,7 +900,7 @@
 
                     <!-- recent tweets -->
                     <div class="col-md-3">
-                        <h3>Твитер</h3>
+                        <h3>Twitter</h3>
 
                         <div class="list-with-icon small">
                             <div class="item">
@@ -951,7 +933,7 @@
                     <!-- ./recent tweets -->
 
                     <!-- contacts -->
-                    <div class="col-md-3">
+                    <div class="col-md-3" id="contacts">
                         <h3>Контакты</h3>
 
                         <div class="footer-contacts">
@@ -1029,8 +1011,8 @@
 <script src="//pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
         $(".player").mb_YTPlayer();
+        $(".preload").removeAttr("hidden");
 
     });
 </script>

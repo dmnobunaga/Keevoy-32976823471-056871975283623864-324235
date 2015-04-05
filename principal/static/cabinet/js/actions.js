@@ -345,7 +345,7 @@ function panel_fullscreen(panel){
     if(panel.hasClass("panel-fullscreened")){
         panel.removeClass("panel-fullscreened").unwrap();
         panel.find(".panel-body,.chart-holder").css("height","");
-        panel.find(".panel-fullscreen .fa").removeClass("fa-compress").addClass("fa-expand");        
+        panel.find(".panel-fullscreen .fa").removeClass("fa-compress").addClass("fa-expand");
         
         $(window).resize();
     }else{
@@ -389,7 +389,7 @@ function panel_collapse(panel,action,callback){
     }else{
         panel.addClass("panel-toggled");
                 
-        panel.find(".panel-collapse .fa-angle-up").removeClass("fa-angle-up").addClass("fa-angle-do");
+        panel.find(".panel-collapse .fa-angle-up").removeClass("fa-angle-up").addClass("fa-angle-down");
 
         if(action && action === "hidden" && typeof callback === "function")
             callback();

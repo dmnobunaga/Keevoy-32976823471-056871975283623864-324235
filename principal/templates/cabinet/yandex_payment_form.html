@@ -1,0 +1,174 @@
+{% load jsonify %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Биллинг</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" href="../../static/cabinet/favicon.ico" type="image/x-icon"/>
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="../../static/cabinet/css/theme-default.css"/>
+    <!-- EOF CSS INCLUDE -->
+</head>
+<body class="page-container-boxed">
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+
+    {% include "cabinet/menu.html" with tab=2 %}
+    <!-- END PAGE SIDEBAR -->
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content" ng-app="app">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <!-- END TOGGLE NAVIGATION -->
+            <!-- SEARCH -->
+            <!-- END SEARCH -->
+            <!-- SIGN OUT -->
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+{#            <li class="xn-icon-button pull-right">#}
+{#                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-wrench"></span></a>#}
+{#            </li>#}
+            <!-- END SIGN OUT -->
+
+        </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+
+        <!-- START BREADCRUMB -->
+        <ul class="breadcrumb">
+            <li><a href="#">Ключевой</a></li>
+            <li class="active">Биллинг</li>
+        </ul>
+        <!-- END BREADCRUMB -->
+
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap" hidden="true" id="page" ng-controller="payments">
+            <div class="panel panel-default">
+
+                <div class="panel-body panel-body-table">
+
+
+                    <form name="ShopForm" method="POST" action="https://demomoney.yandex.ru/eshop.xml">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            <p>Оплата Рекламной кампании: {{ campaign.campaign_id }}</p>
+                            <p>Сумма заказа: {{ campaign.budget }} руб.</p>
+                            <input type="submit" class="btn btn-primary" value="Оплатить">
+                            <a href="/cabinet/" class="btn btn-default">Назад</a>
+
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- END PAGE CONTENT WRAPPER -->
+
+
+    </div>
+    <div class="row">
+        <div class="text-center copyright">Ключевой © 2015</div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Выйти ?</div>
+            <div class="mb-content">
+                <p>Вы уверены что хотите выйти?</p>
+
+                <p></p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a href="/" class="btn btn-success btn-lg">Да</a>
+                    <button class="btn btn-default btn-lg mb-control-close">Нет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript"
+        src="../../static/bower_components/angular-webstorage/angular-webstorage.min.js"></script>
+<script type="text/javascript" src="../../static/bower_components/underscore/underscore-min.js"></script>
+<!-- END PLUGINS -->
+
+<!-- START THIS PAGE PLUGINS-->
+<script type="text/javascript"
+        src="../../static/cabinet/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type='text/javascript' src='../../static/cabinet/js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+<script type='text/javascript' src='../../static/cabinet/js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/owl/owl.carousel.min.js"></script>
+
+<script type="text/javascript" src="../../static/cabinet/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- END THIS PAGE PLUGINS-->
+
+<!-- START TEMPLATE -->
+<script type="text/javascript" src="../../static/cabinet/js/settings.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/plugins.js"></script>
+<script type="text/javascript" src="../../static/cabinet/js/actions.js"></script>
+<script type="text/javascript">
+    function declOfNum(number, titles) {
+        cases = [2, 0, 1, 1, 1, 2];
+        return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+    }
+</script>
+
+<script type="text/javascript">
+    window.orders = [
+        {% for order in orders %}
+            {
+                "campaign_id": "{{ order.campaign.campaign_id }}",
+                "cost": "{{ order.campaign.budget }}",
+                "date": "{{ order.campaign.paid_datetime }}",
+                "method": "{{ order.payment.payment_type }}"
+
+            },
+        {% endfor %}
+    ];
+</script>
+<script type="text/javascript">
+
+    var app = angular.module('app', ['webStorageModule']);
+
+    app.controller('payments', function ($scope) {
+        $scope.payments = window.payments;
+    });
+    $("#page").removeAttr("hidden")
+</script>
+</body>
+</html>
+
+
+
+
+
+

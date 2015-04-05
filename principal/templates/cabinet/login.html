@@ -7,11 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="../../static/cabinet/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/static/cabinet/favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
-        
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="../../static/cabinet/css/theme-default.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/static/cabinet/css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->                                    
     </head>
     <body>
@@ -22,7 +21,12 @@
                 <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Войти</strong> в личный кабинет</div>
-                    <form action="/login" class="form-horizontal" method="post">{% csrf_token %}
+                    {% if next %}
+                    <form action="/login?next={{next}}" class="form-horizontal" method="post">
+                    {%else%}
+                    <form action="/login" class="form-horizontal" method="post">
+                    {% endif %}
+                    {% csrf_token %}
                     <div class="form-group">
                         <div class="col-md-12">
                             <input name="username" type="text" class="form-control" placeholder="Email или Идентификатор пользователя"/>
@@ -55,7 +59,35 @@
             </div>
             
         </div>
-        
+
+        {% if messages %}
+        <div class="message-box animated fadeIn open" data-sound="alert" id="error">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-warning"></span>Ошибка</div>
+                    <div class="mb-content">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-lg mb-control-close">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery.min.js"></script>
+            <script type="text/javascript" src="../../static/cabinet/js/plugins/jquery/jquery-ui.min.js"></script>
+            <script type="text/javascript" src="../../static/cabinet/js/plugins/bootstrap/bootstrap.min.js"></script>
+            <!-- END PLUGINS -->
+
+            <!-- START TEMPLATE -->
+            <script type="text/javascript" src="../../static/cabinet/js/settings.js"></script>
+            <script type="text/javascript" src="../../static/cabinet/js/plugins.js"></script>
+            <script type="text/javascript" src="../../static/cabinet/js/actions.js"></script>
+        </div>
+        {% endif %}
     </body>
 </html>
 
