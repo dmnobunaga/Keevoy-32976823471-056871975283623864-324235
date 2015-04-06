@@ -1,32 +1,35 @@
-$(document).ready(function() {
-    $('.banner').show().revolution(
-    {
-        dottedOverlay:"none",
-        delay:35000,
-        startwidth:1100,
-        startheight:600,
+$(document).ready(function () {
+    if ($(window).width() >= 1024000) {
 
-        touchenabled:"on",
-        onHoverStop:"on",
+        $('.banner').show().revolution(
+            {
+                dottedOverlay: "none",
+                delay: 35000,
+                startwidth: 1100,
+                startheight: 600,
 
-        swipe_velocity: 0.7,
-        swipe_min_touches: 1,
-        swipe_max_touches: 1,
-        drag_block_vertical: false,
+                touchenabled: "on",
+                onHoverStop: "on",
 
-        parallax:"mouse",
-        parallaxBgFreeze:"on",
-        parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
 
-        shadow:1,
-        fullWidth:"on",
+                //parallax:"mouse",
+                //parallaxBgFreeze:"on",
+                //parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
 
-        spinner:"spinner4",
+                shadow: 1,
+                fullWidth: "on",
 
-        startWithSlide:0,
-        fullScreenAlignForce:"off",
-        autoHeight:"on",
-        fullScreenOffsetContainer: ""
-    });
+                spinner: "spinner4",
+
+                startWithSlide: 0,
+                fullScreenAlignForce: "on",
+                autoHeight: "on",
+                fullScreenOffsetContainer: " "
+            });
+    }
 
 });	//ready

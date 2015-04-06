@@ -24,9 +24,6 @@ SECRET_KEY = 'k8aa%lc!^2ajsc#r*u-wgeue3b*#_h64q18tn9-7^usm+rytpz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-
-
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
@@ -51,7 +48,6 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'debug_panel.middleware.DebugPanelMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

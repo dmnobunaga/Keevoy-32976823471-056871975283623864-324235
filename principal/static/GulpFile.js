@@ -87,8 +87,8 @@ gulp.task('js:build', function () {
             'front-end/js/main.js'
         ], {base: './'})) // Order
         .pipe(concat("all.js")) //Concat
-        .pipe(gulp.dest(path.build.js)) //И в build
-        .pipe(reload({stream: true}));
+        .pipe(gulp.dest(path.build.js)); //И в build
+        //.pipe(reload({stream: true}));
 });
 
 gulp.task('default', function () {

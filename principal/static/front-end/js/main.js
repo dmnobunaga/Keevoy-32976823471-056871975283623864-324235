@@ -12,6 +12,11 @@ function ValidUrl(str) {
 }
 $(document).ready(function () {
     var join_us = $("#join_us_input");
+    join_us.on("input", function() {
+        if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())) {
+            $("#join_us_btn").show()
+        }
+    });
     $("#join_us_btn").click(function(){
         if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())){
 
@@ -29,7 +34,7 @@ $(document).ready(function () {
         }
     });
 });
-// Mute Vimeo
-var iframe = document.getElementsByTagName('iframe')[0];
-iframe.contentWindow.postMessage('{"method":"setVolume", "value":0}', '*');
+//// Mute Vimeo
+//var iframe = document.getElementsByTagName('iframe')[0];
+//iframe.contentWindow.postMessage('{"method":"setVolume", "value":0}', '*');
 

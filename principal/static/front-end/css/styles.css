@@ -1791,7 +1791,7 @@ blockquote p {
 }
 input.lets-start {
   height: 55px;
-  font-size: 25vw;
+  font-size: 25px;
 }
 .start-bg {
   background: url("../img/backgrounds/bg-6.jpg") no-repeat center center fixed;
@@ -1839,7 +1839,7 @@ input.lets-start {
   margin-bottom: 10px;
 }
 .join_us_div {
-  padding-top: 35% ;
+  padding-top: 35%;
   padding-bottom: 45%;
 }
 #join_us_input {
@@ -2001,7 +2001,6 @@ div.table-padding {
     font-size: 45px;
   }
   .start-bg {
-    background: url("../img/backgrounds/bg-6.jpg") no-repeat center center fixed;
     background-size: 150%;
   }
   #main_header {
