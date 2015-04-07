@@ -1847,6 +1847,9 @@ input.lets-start {
   padding: 20px;
   width: 100%;
 }
+#join_us_btn {
+  display: none;
+}
 .popular {
   color: green;
 }

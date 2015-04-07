@@ -26,7 +26,7 @@ urlpatterns = patterns('',
                            name='payment_success'),
                        url(r'^yandex-money/', include('yandex_money.urls')),
 
-                        #Help Desk
+                        # Help Desk
                        (r'cabinet/support/', include('helpdesk.urls')),
 
                        )
