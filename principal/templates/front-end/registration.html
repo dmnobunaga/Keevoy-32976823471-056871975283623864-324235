@@ -101,13 +101,12 @@
                                     {{ keyword.word }}
                                 </td>
                                 <td>
-                                    <i class="fa fa-group {{ keyword.class }}"> {{ keyword.popularity }}</i>
                                     <a target="_blank"
-                                       href="https://www.google.ru/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q={{ keyword.word }}"><i
+                                       href="https://www.google.com/trends/explore#q={{ keyword }}"><i
                                             class="fa fa-google"></i></a>
                                     <a target="_blank"
-                                       href="https://yandex.ru/yandsearch?lr=213&text={{ keyword.word }}"><i
-                                            class="fa fa-ya"></i></a>
+                                       href="https://wordstat.yandex.ru/#!/?words={{ keyword }}">
+                                        <i class="fa fa-yahoo"></i></a>
                                 </td>
                                 <td>
                                     <button ng-click="deleteKeyword($index, keyword)"
@@ -127,7 +126,6 @@
                             <p><strong>{{ clientsCount }}</strong> потенциальных клиентов в течении <strong>1 - 1.5
                                 месяца</strong></p>
                             <br>
-                            <span>Это закрытая альфа версия, сроки и объём могут значительно отличаться от реального.</span>
                         </div>
                         <button ng-disabled="keywords.length == 0" ng-click="moveStep2()" style="float: right;"
                                 class="btn btn-warning">Продолжить

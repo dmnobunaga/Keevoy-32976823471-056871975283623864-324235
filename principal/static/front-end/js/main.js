@@ -1,5 +1,6 @@
 /**
  * Created by Dmitry on 03.03.2015.
+ * @return {boolean}
  */
 function ValidUrl(str) {
         var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -12,9 +13,11 @@ function ValidUrl(str) {
 }
 $(document).ready(function () {
     var join_us = $("#join_us_input");
-    join_us.on("input", function() {
+    join_us.keyup(function() {
         if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())) {
-            $("#join_us_btn").show()
+            $("#join_us_btn").css('display', 'block');
+        }else{
+            $("#join_us_btn").css('display', 'none');
         }
     });
     $("#join_us_btn").click(function(){
