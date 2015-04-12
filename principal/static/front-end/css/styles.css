@@ -2043,3 +2043,7 @@ div.table-padding {
 @media only screen and (min-width: 1824px) {
   /* Styles */
 }
+.tech {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

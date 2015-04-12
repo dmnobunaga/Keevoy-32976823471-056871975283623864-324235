@@ -22,7 +22,6 @@ $(document).ready(function () {
     });
     $("#join_us_btn").click(function(){
         if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())){
-
             window.location = "/registration?site="+ encodeURIComponent(join_us.val());
         }
     });
@@ -36,6 +35,20 @@ $(document).ready(function () {
             $(this).val("Введите url вашего сайта");
         }
     });
+    $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+    });
+    $(".player").mb_YTPlayer();
+    $(".preload").removeAttr("hidden");
 });
 //// Mute Vimeo
 //var iframe = document.getElementsByTagName('iframe')[0];
