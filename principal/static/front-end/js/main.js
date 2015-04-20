@@ -14,25 +14,25 @@ function ValidUrl(str) {
 $(document).ready(function () {
     var join_us = $("#join_us_input");
     join_us.keyup(function() {
-        if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())) {
+        if (join_us.val() !== "http://" && join_us.val() !== "Введите адрес вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())) {
             $("#join_us_btn").css('display', 'block');
         }else{
             $("#join_us_btn").css('display', 'none');
         }
     });
     $("#join_us_btn").click(function(){
-        if (join_us.val() !== "http://" && join_us.val() !== "Введите url вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())){
+        if (join_us.val() !== "http://" && join_us.val() !== "Введите адрес вашего сайта" && join_us.val() !== "" && ValidUrl(join_us.val())){
             window.location = "/registration?site="+ encodeURIComponent(join_us.val());
         }
     });
     join_us.on("focus", function () {
-        if ($(this).val() === "Введите url вашего сайта") {
+        if ($(this).val() === "Введите адрес вашего сайта" || !ValidUrl(join_us.val())) {
             $(this).val("http://");
         }
     });
     join_us.on("blur", function () {
-        if ($(this).val() === "http://" || $(this).val() === "") {
-            $(this).val("Введите url вашего сайта");
+        if ($(this).val() === "http://" || $(this).val() === "" || !ValidUrl(join_us.val())) {
+            $(this).val("Введите адрес вашего сайта");
         }
     });
     $('a[href*=#]:not([href=#])').click(function () {
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 }
             }
     });
-    $(".player").mb_YTPlayer();
+    //$(".player").mb_YTPlayer();
     $(".preload").removeAttr("hidden");
 });
 //// Mute Vimeo

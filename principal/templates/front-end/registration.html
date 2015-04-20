@@ -98,7 +98,7 @@
                             <tbody>
                             <tr ng-repeat="keyword in keywords">
                                 <td>
-                                    {{ keyword.word }}
+                                    {{ keyword }}
                                 </td>
                                 <td>
                                     <a target="_blank"
@@ -288,22 +288,22 @@
             });
 
         };
-        $scope.getKeywordPrice = function (keyword) {
-            //Call to external server
-            if (keyword.word.indexOf('купить') != -1) {
-                return 2.0
-            } else {
-                return 0.9;
-            }
-        };
+{#        $scope.getKeywordPrice = function (keyword) {#}
+{#            //Call to external server#}
+{#            if (keyword.word.indexOf('купить') != -1) {#}
+{#                return 2.0#}
+{#            } else {#}
+{#                return 0.9;#}
+{#            }#}
+{#        };#}
         $scope.calculateKeywords = function () {
-            var keywordPrice = 0;
-            _.each($scope.keywords, function (keyword) {
-                keywordPrice = keywordPrice + $scope.getKeywordPrice(keyword);
-
-            });
-            keywordPrice = keywordPrice / $scope.keywords.length;
-            $scope.clientsCount = Math.round(parseFloat($scope.budget.replace(' руб.', '')) / parseFloat(keywordPrice));
+{#            var keywordPrice = 0;#}
+{#            _.each($scope.keywords, function (keyword) {#}
+{#                keywordPrice = keywordPrice + $scope.getKeywordPrice(keyword);#}
+{##}
+{#            });#}
+{#            keywordPrice = keywordPrice / $scope.keywords.length;#}
+{#            $scope.clientsCount = Math.round(parseFloat($scope.budget.replace(' руб.', '')) / parseFloat(keywordPrice));#}
         };
         $scope.removeCurrency = function (budget) {
             if (budget) {
@@ -320,11 +320,7 @@
         };
         $scope.addKeyword = function (keyword) {
             if (keyword.length >= 1) {
-                $scope.keywords.push({
-                    "word": keyword,
-                    "class": "unknown",
-                    "popularity": "Неизвестный"
-                });
+                $scope.keywords.push(keyword);
                 $scope.keyword = "";
                 $scope.calculateKeywords()
             }
